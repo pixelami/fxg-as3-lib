@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<componentPackage>
+    <component id="BitmapGraphic" class="org.pixelami.fxg.elements.BitmapGraphic"/>
+    <component id="Ellipse" class="org.pixelami.fxg.elements.Ellipse"/>
+    <component id="Graphic" class="org.pixelami.fxg.elements.Graphic"/>
+    <component id="Group" class="org.pixelami.fxg.elements.Group"/>
+    <component id="Library" class="org.pixelami.fxg.elements.Library"/>
+    <component id="Line" class="org.pixelami.fxg.elements.Line"/>
+    <component id="Path" class="org.pixelami.fxg.elements.Path"/>
+    <component id="Rect" class="org.pixelami.fxg.elements.Rect"/>
+    <component id="TextGraphic" class="org.pixelami.fxg.elements.TextGraphic"/>
+    <component id="GradientEntry" class="org.pixelami.fxg.elements.fills.GradientEntry"/>
+    <component id="BitmapFill" class="org.pixelami.fxg.elements.fills.BitmapFill"/>
+    <component id="LinearGradient" class="org.pixelami.fxg.elements.fills.LinearGradient"/>
+    <component id="RadialGradient" class="org.pixelami.fxg.elements.fills.RadialGradient"/>
+    <component id="SolidColor" class="org.pixelami.fxg.elements.fills.SolidColor"/>
+    <component id="LinearGradientStroke" class="org.pixelami.fxg.elements.strokes.LinearGradientStroke"/>
+    <component id="RadialGradientStroke" class="org.pixelami.fxg.elements.strokes.RadialGradientStroke"/>
+    <component id="DropShadowFilter" class="org.pixelami.fxg.elements.filters.DropShadowFilter"/>
+    
+</componentPackage>

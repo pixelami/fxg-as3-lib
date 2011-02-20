@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<design>
+   <namespaces>
+     <namespace prefix="pxg" uri="http://www.pixelami.org/2011/pxg"/>
+   </namespaces>
+
+   <categories>
+	   <category name="pxg" label="Pixelami" defaultExpand="true"/>
+   </categories>
+   
+   <componentPackage>
+	    <component name="BitmapGraphic" namespace="pxg" category="pxg" >
+	    </component>
+	    <component name="Ellipse" namespace="pxg" category="pxg" >
+	    </component>
+	    <component name="Graphic" namespace="pxg" category="pxg" >
+	    </component>
+	    <component name="Group" namespace="pxg" category="pxg" >
+	    </component>
+	    <component name="Library" namespace="pxg" category="pxg" >
+	    </component>
+	    <component name="Line" namespace="pxg" category="pxg" >
+	    </component>
+	    <component name="Path" namespace="pxg" category="pxg" >
+	    </component>
+	    <component name="Rect" namespace="pxg" category="pxg" >
+	    </component>
+	    <component name="TextGraphic" namespace="pxg" category="pxg" >
+	    </component>
+	    <component name="GradientEntry" namespace="pxg" category="pxg" >
+	    </component>
+	    <component name="BitmapFill" namespace="pxg" category="pxg" >
+	    </component>
+	    <component name="LinearGradient" namespace="pxg" category="pxg" >
+	    </component>
+	    <component name="RadialGradient" namespace="pxg" category="pxg" >
+	    </component>
+	    <component name="SolidColor" namespace="pxg" category="pxg" >
+	    </component>
+	    <component name="LinearGradientStroke" namespace="pxg" category="pxg" >
+	    </component>
+	    <component name="RadialGradientStroke" namespace="pxg" category="pxg" >
+	    </component>
+	    <component name="DropShadowFilter" namespace="pxg" category="pxg" >
+	    </component>
+	</componentPackage>
+<design>
