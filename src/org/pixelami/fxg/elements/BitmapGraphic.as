@@ -1,13 +1,17 @@
-/**
- * Created by Alexander "Foo 'The Man' Choo" Syed (a.k.a. Captain Fantastic) 
- */
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Pixelami
+//  Copyright 2011 Original Authors (Alexander Syed et al)
+//  All Rights Reserved.
+//
+//  NOTICE: Pixelami permits you to use, modify, and distribute this file
+//  in accordance with the terms of the license agreement accompanying it.
+//
+////////////////////////////////////////////////////////////////////////////////
+
 /*
 * x <Number>: The left edge of the image rectangle, in the parent coordinate system. Defaults to 0.
 * y <Number>: The top edge of the image rectangle, in the parent coordinate system. Defaults to 0.
-* width <Number>: The width of the image rectangle, in the parent coordinate system. Defaults to the width of the source image data.
-* height <Number>: The height of the image rectangle, in the parent coordinate system. Defaults to the height of the source image data.
-* repeat <Boolean>: Whether the image data should be tiled to fill the image rectangle, if necessary. Defaults to true.
-* source <embed reference>: An embedded reference to the file defining the image data to render. Must be a PNG, JPG, or GIF file.  Required attribute.
 * visible <Boolean>: Whether or not the BitmapGraphic is visible. Defaults to true.
 */
 package org.pixelami.fxg.elements
@@ -27,8 +31,8 @@ package org.pixelami.fxg.elements
 			super();
 		}
 		
-		private var _repeat:Boolean = true; // <Boolean>: Whether the image data should be tiled to fill the image rectangle, if necessary. Defaults to true.
-		private var _source:String; // <embed reference>: An embedded reference to the file defining the image data to render. Must be a PNG, JPG, or GIF file.  Required attribute.
+		private var _repeat:Boolean = true;
+		private var _source:String;
 		private var _width:Number;
 		private var _height:Number;
 		
@@ -38,9 +42,6 @@ package org.pixelami.fxg.elements
 		
 		private var sourceSet:Boolean = true;
 		private var bitmapReady:Boolean;
-		
-		
-
 
 		public function set source(value:String):void
 		{
@@ -54,12 +55,17 @@ package org.pixelami.fxg.elements
 			
 		}
 		
+		/**
+		 * An embedded reference to the file defining the image data to render. Must be a PNG, JPG, or GIF file.  Required attribute.
+		 */
 		public function get source():String
 		{
 			return _source;
 		}
 		
-		
+		/**
+		 * Whether the image data should be tiled to fill the image rectangle, if necessary. Defaults to true.
+		 */
 		public function get repeat():Boolean
 		{
 			return _repeat;
@@ -70,7 +76,9 @@ package org.pixelami.fxg.elements
 			_repeat = value;
 		}
 		
-		
+		/**
+		 * The width of the image rectangle, in the parent coordinate system. Defaults to the width of the source image data.
+		 */
 		override public function get width():Number
 		{
 			return _width;
@@ -81,6 +89,9 @@ package org.pixelami.fxg.elements
 			_width = value;
 		}
 		
+		/**
+		 * The height of the image rectangle, in the parent coordinate system. Defaults to the height of the source image data.
+		 */
 		override public function get height():Number
 		{
 			return _height;
@@ -136,9 +147,8 @@ package org.pixelami.fxg.elements
 			}
 			if(bitmap)
 			{
-				trace("has bitmap");
+				//trace("has bitmap");
 			}
-			//super.renderElement()
 		}
 		
 		
@@ -151,7 +161,7 @@ package org.pixelami.fxg.elements
 			renderElement();
 		}
 		
-		
+		// TODO move to utils class
 		protected function extractEmbedURL(source:String):String
 		{
 			// handle escaped strings

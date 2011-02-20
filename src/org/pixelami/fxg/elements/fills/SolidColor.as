@@ -1,14 +1,14 @@
-/*
-Children
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Pixelami
+//  Copyright 2011 Original Authors (Alexander Syed et al)
+//  All Rights Reserved.
+//
+//  NOTICE: Pixelami permits you to use, modify, and distribute this file
+//  in accordance with the terms of the license agreement accompanying it.
+//
+////////////////////////////////////////////////////////////////////////////////
 
-None.
-
-Attributes
-
-* alpha <Number>: A real number value ranging from 0 to 1 specifying the opacity of the fill, with 1 being opaque. Defaults to 1.
-* color <Color>: An RGB value (in the form #rrggbb) that defines the single color value to fill the shape with. Defaults to #000000.
-
-*/
 package org.pixelami.fxg.elements.fills
 {
 	import flash.display.Graphics;
@@ -19,7 +19,6 @@ package org.pixelami.fxg.elements.fills
 		public function SolidColor()
 		{
 		}
-		
 		
 		override public function beginFill(value:Graphics):void
 		{

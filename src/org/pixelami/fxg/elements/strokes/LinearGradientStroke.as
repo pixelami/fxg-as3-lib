@@ -1,12 +1,23 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Pixelami
+//  Copyright 2011 Original Authors (Alexander Syed et al)
+//  All Rights Reserved.
+//
+//  NOTICE: Pixelami permits you to use, modify, and distribute this file
+//  in accordance with the terms of the license agreement accompanying it.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * LinearGradientStroke
+ * 
+ * The LinearGradientStroke paints a stroke along a path or shape with a continuously smooth color transition between a list of colors along a vector. 
+ * The LinearGradientStroke operates almost identically to the LinearGradient fill type. As with the fill, By default, a LinearGradientStroke is transformed to fill the bounding box of the path being stroked. The bounding box is computed by computing the bounding box of the anchor points of the path, and expanding its borders outward in each direction by half the weight of the stroke.
+ * Otherwise its rendering behavior is identical to that of the LinearGradientFill.
+ */
+
 /*
-
-LinearGradientStroke
-
-The LinearGradientStroke paints a stroke along a path or shape with a continuously smooth color transition between a list of colors along a vector. 
-
-The LinearGradientStroke operates almost identically to the LinearGradient fill type. As with the fill, By default, a LinearGradientStroke is transformed to fill the bounding box of the path being stroked. The bounding box is computed by computing the bounding box of the anchor points of the path, and expanding its borders outward in each direction by half the weight of the stroke.
-
-Otherwise its rendering behavior is identical to that of the LinearGradientFill.
 Children
 
 * matrix
@@ -24,12 +35,11 @@ Attributes
 * caps <String> (none, round, square): A value that specifies the type of caps at the end of lines. Defaults to "none".
 * joints <String> (bevel, miter, round): A value that specifies the type of joint appearance used at angles. Defaults to "round".
 * miterLimit <Number>: A number that indicates the limit at which a miter is cut off. Valid values range from 0 to 255.
-
 */
 package org.pixelami.fxg.elements.strokes
 {
 	
-	public class LinearGradientStroke 
+	public class LinearGradientStroke  implements IFXGStroke
 	{
 		public function LinearGradientStroke()
 		{

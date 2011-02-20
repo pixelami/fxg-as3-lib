@@ -1,22 +1,14 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Pixelami
+//  Copyright 2011 Original Authors (Alexander Syed et al)
+//  All Rights Reserved.
+//
+//  NOTICE: Pixelami permits you to use, modify, and distribute this file
+//  in accordance with the terms of the license agreement accompanying it.
+//
+////////////////////////////////////////////////////////////////////////////////
 
-
-
-
-/*
-Children
-
-* GradientEntry
-* matrix
-
-Attributes
-
-* x <Number>: The horizontal translation of the gradient transform that defines the horizontal center of the gradient.
-* y <Number>: The vertical translation of the gradient transform that defines the vertical center of the gradient.
-* scaleX <Number>: The horizontal scale of the gradient transform that defines the width of the (unrotated) gradient.
-* rotation <Number> (<angle>): The rotation of the gradient transform.
-
-
-*/
 package org.pixelami.fxg.elements.fills
 {
 	import flash.display.GradientType;
@@ -154,36 +146,7 @@ package org.pixelami.fxg.elements.fills
 		override public function set element(value:XML):void
 		{
 			super.element = value;
-			/*
-			var gradientEntries:XMLList = value.children();
-			trace("LinearGradient entries: "+gradientEntries.toXMLString());
 			
-			colors = [];
-			alphas = [];
-			ratios = [];
-			
-			var count:uint = 0;
-			for each(var el:XML in gradientEntries)
-			{
-				var col:uint = FXGUtil.colorHexStringToInt(el.@color);
-				//trace("col: "+col);
-				colors.push(col);
-				//trace("el.@alpha: "+el.@alpha);
-				var alph:Number =  FXGUtil.getAlpha(el.@alpha,1) ;
-				alphas.push(alph);
-				var rat:Number = FXGUtil.getNumber(el.@ratio, count * (1/(gradientEntries.length() - 1)));
-				var rtio:uint = rat * 255;
-				ratios.push(rtio);
-			}
-			
-			trace("colors: "+colors);
-			trace("alphas: "+alphas);
-			trace("ratios: "+ratios);
-			
-			matrix = new Matrix();
-			
-			
-			*/
 			
 		}
 		
@@ -317,23 +280,14 @@ package org.pixelami.fxg.elements.fills
 			commonMatrix.scale (length / GRADIENT_DIMENSION, 1 / GRADIENT_DIMENSION);
 			
 			commonMatrix.rotate (!isNaN(_angle) ? _angle : rotationInRadians);
-			/*
-			if (isNaN(tx))
-				tx = targetBounds.left + targetBounds.width / 2;
-			else
-				tx += targetOrigin.x;
-			if (isNaN(ty))
-				ty = targetBounds.top + targetBounds.height / 2;
-			else
-				ty += targetOrigin.y;
-			*/
+			
 			commonMatrix.translate(tx, ty);	
 			
 			
-			trace("tx: "+tx);
-			trace("ty: "+ty);
-			trace("sx: "+sx);
-			trace("sy: "+sy);
+			//trace("tx: "+tx);
+			//trace("ty: "+ty);
+			//trace("sx: "+sx);
+			//trace("sy: "+sy);
 			
 			
 			// get the target width and height
@@ -347,40 +301,34 @@ package org.pixelami.fxg.elements.fills
 				var p1:Point = Point.polar(sx,radians);
 			
 				var p2:Point = p1.add(p0);
-				trace("p1: "+p1);
-				trace("p2: "+p2);
+				//trace("p1: "+p1);
+				//trace("p2: "+p2);
 				
 				var grect:Rectangle = new Rectangle(p2.x,p2.y,Math.abs(p1.x),Math.abs(p1.y));
 				grect = grect.union(bounds);
-				trace("grect 1: "+grect);
+				//trace("grect 1: "+grect);
 				
 				
-				trace("grect left: "+grect.left);
-				trace("greact right: "+grect.right);
+				//trace("grect left: "+grect.left);
+				//trace("greact right: "+grect.right);
 				
 				
-				trace("bounds left: "+bounds.left);
-				trace("bounds top: "+bounds.top);
+				//trace("bounds left: "+bounds.left);
+				//trace("bounds top: "+bounds.top);
 				
 				// top postion of gradient
-				//tx 
 				tx = p0.x + p1.x;
 				ty = p0.y + p1.y;
 				
 				element.@scaleY = sy = bounds.height;
-				//matrix.createGradientBox(sx,sx,radians,tx,ty);
 				matrix.createGradientBox(sx,sx,radians,grect.left,p2.y);
-				//matrix.createGradientBox(sx,sx,radians,p2.x,p2.y);
-				//matrix.createGradientBox(Math.abs(grect.width),Math.abs(grect.height),radians,p2.x,p2.y);
-				
+
 			}
 			else
 			{
 				matrix.createGradientBox(sx,sy,radians,tx,ty);
 			}
-			
-			//matrix = commonMatrix;
-			
+
 		}
 		
 		
@@ -391,16 +339,12 @@ package org.pixelami.fxg.elements.fills
 		
 		override public function beginFill(value:Graphics):void
 		{
-			trace("LinearGradient beginFill");
-			trace("colors: "+colors);
-			trace("alphas: "+alphas);
-			trace("ratios: "+ratios);
-			//matrix = null
-			trace("matrix: "+matrix);
+			//trace("LinearGradient beginFill");
+			//trace("colors: "+colors);
+			//trace("alphas: "+alphas);
+			//trace("ratios: "+ratios);
+			//trace("matrix: "+matrix);
 			value.beginGradientFill(GradientType.LINEAR,colors,alphas,ratios,matrix,spreadMethod,interpolationMethod,focalPointRatio);
-			//value.beginGradientFill(GradientType.LINEAR,colors,alphas,ratios,matrix);//,spreadMethod,interpolationMethod,focalPointRatio);
-			
-			
 		}
 		
 		

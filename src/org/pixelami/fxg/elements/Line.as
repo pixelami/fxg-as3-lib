@@ -1,23 +1,31 @@
-/**
- * Created by Alexander "Foo 'The Man' Choo" Syed (a.k.a. Captain Fantastic) 
- */
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Pixelami
+//  Copyright 2011 Original Authors (Alexander Syed et al)
+//  All Rights Reserved.
+//
+//  NOTICE: Pixelami permits you to use, modify, and distribute this file
+//  in accordance with the terms of the license agreement accompanying it.
+//
+////////////////////////////////////////////////////////////////////////////////
 
 package org.pixelami.fxg.elements
 {
-	
-	
 	public class Line extends FXGShapeElement
 	{
-		private var _xFrom:Number = 0; //  <Number> The x-axis starting point of the line. Defaults to 0.
-		private var _yFrom:Number = 0; //  <Number> The y-axis starting point of the line. Defaults to 0.
-		private var _xTo:Number = 0; //  <Number> The x-axis ending point of the line. Defaults to 0.
-		private var _yTo:Number = 0;  //  <Number> The y-axis ending point of the line. Defaults to 0.
+		private var _xFrom:Number = 0;
+		private var _yFrom:Number = 0;
+		private var _xTo:Number = 0;
+		private var _yTo:Number = 0;
 		
 		public function Line()
 		{
 			super();
 		}
 		
+		/**
+		 * The x-axis starting point of the line. Defaults to 0.
+		 */
 		public function get xFrom():Number
 		{
 			return _xFrom;
@@ -28,6 +36,9 @@ package org.pixelami.fxg.elements
 			_xFrom = value;
 		}
 
+		/**
+		 * The y-axis starting point of the line. Defaults to 0.
+		 */
 		public function get yFrom():Number
 		{
 			return _yFrom;
@@ -38,6 +49,9 @@ package org.pixelami.fxg.elements
 			_yFrom = value;
 		}
 
+		/**
+		 * The x-axis ending point of the line. Defaults to 0.
+		 */
 		public function get xTo():Number
 		{
 			return _xTo;
@@ -48,6 +62,9 @@ package org.pixelami.fxg.elements
 			_xTo = value;
 		}
 
+		/**
+		 * The y-axis ending point of the line. Defaults to 0.
+		 */
 		public function get yTo():Number
 		{
 			return _yTo;

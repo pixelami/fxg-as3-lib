@@ -1,3 +1,14 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Pixelami
+//  Copyright 2011 Original Authors (Alexander Syed et al)
+//  All Rights Reserved.
+//
+//  NOTICE: Pixelami permits you to use, modify, and distribute this file
+//  in accordance with the terms of the license agreement accompanying it.
+//
+////////////////////////////////////////////////////////////////////////////////
+
 /*
 SolidColorStroke
 
@@ -7,24 +18,19 @@ Children
 None.
 Attributes
 
-* alpha <Number>: A real number value ranging from 0 to 1 specifying the opacity of the stroke, with 1 being opaque. Defaults to 1.
-* caps <String> (round, square, none): Specifies the type of caps at the end of lines.
-* color <Color>: An RGB value (in the form #rrggbb) that defines the single color value to stroke the shape with. Defaults to #000000.
-* joints <String> (round, miter, bevel): Specifies the type of joint appearance used at angles.
-* miterLimit <Number>: Indicates the limit at which a miter is cut off. Valid values range from 0 to 255. Defaults to 0.
-* pixelHinting <Boolean>: Specifies whether to hint strokes to full pixels. This value affects both the position of anchors of a curve and the line stroke size itself. Defaults to false.
-* scaleMode <String> (normal, none, horizontal, vertical): A value that specifies which scale mode to use. Defaults to "normal".
 * weight <Number>: The line weight, in pixels. Defaults to 1.
 
 */
 package org.pixelami.fxg.elements.strokes
 {
 	import flash.display.Graphics;
+	
 	import org.pixelami.fxg.utils.FXGUtil;
 
 	public class SolidColorStroke implements IFXGStroke
 	{
 		private var _thickness:Number = 1;
+		private var _weight:Number = 1;
 		private var _color:uint;
 		private var _alpha:Number = 1;
 		private var _pixelHinting:Boolean;
@@ -37,7 +43,9 @@ package org.pixelami.fxg.elements.strokes
 		{
 		}
 		
-		
+		/**
+		 * weight <Number>: The line weight, in pixels. Defaults to 1.
+		 */
 		public function get thickness():Number
 		{
 			return _thickness;
@@ -47,7 +55,23 @@ package org.pixelami.fxg.elements.strokes
 		{
 			_thickness = value;
 		}
-
+		
+		/**
+		 * weight <Number>: The line weight, in pixels. Defaults to 1.
+		 */
+		public function get weight():Number
+		{
+			return _weight;
+		}
+		
+		public function set weight(value:Number):void
+		{
+			_weight = value;
+		}
+		
+		/**
+		 * An RGB value (in the form #rrggbb) that defines the single color value to stroke the shape with. Defaults to #000000.
+		 */
 		public function get color():uint
 		{
 			return _color;
@@ -58,6 +82,9 @@ package org.pixelami.fxg.elements.strokes
 			_color = value;
 		}
 
+		/**
+		 * A real number value ranging from 0 to 1 specifying the opacity of the stroke, with 1 being opaque. Defaults to 1.
+		 */
 		public function get alpha():Number
 		{
 			return _alpha;
@@ -68,6 +95,9 @@ package org.pixelami.fxg.elements.strokes
 			_alpha = value;
 		}
 
+		/**
+		 * Specifies whether to hint strokes to full pixels. This value affects both the position of anchors of a curve and the line stroke size itself. Defaults to false.
+		 */
 		public function get pixelHinting():Boolean
 		{
 			return _pixelHinting;
@@ -78,6 +108,9 @@ package org.pixelami.fxg.elements.strokes
 			_pixelHinting = value;
 		}
 
+		/**
+		 * (normal, none, horizontal, vertical): A value that specifies which scale mode to use. Defaults to "normal".
+		 */
 		public function get scaleMode():String
 		{
 			return _scaleMode;
@@ -88,6 +121,9 @@ package org.pixelami.fxg.elements.strokes
 			_scaleMode = value;
 		}
 
+		/**
+		 * (round, square, none): Specifies the type of caps at the end of lines.
+		 */
 		public function get caps():String
 		{
 			return _caps;
@@ -98,6 +134,9 @@ package org.pixelami.fxg.elements.strokes
 			_caps = value;
 		}
 
+		/**
+		 * (round, miter, bevel): Specifies the type of joint appearance used at angles.
+		 */
 		public function get joints():String
 		{
 			return _joints;
@@ -108,6 +147,9 @@ package org.pixelami.fxg.elements.strokes
 			_joints = value;
 		}
 
+		/**
+		 * Indicates the limit at which a miter is cut off. Valid values range from 0 to 255. Defaults to 0.
+		 */
 		public function get miterLimit():Number
 		{
 			return _miterLimit;

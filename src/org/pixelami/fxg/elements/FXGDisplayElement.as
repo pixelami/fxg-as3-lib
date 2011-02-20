@@ -1,4 +1,13 @@
-
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Pixelami
+//  Copyright 2011 Original Authors (Alexander Syed et al)
+//  All Rights Reserved.
+//
+//  NOTICE: Pixelami permits you to use, modify, and distribute this file
+//  in accordance with the terms of the license agreement accompanying it.
+//
+////////////////////////////////////////////////////////////////////////////////
 
 package org.pixelami.fxg.elements
 {
@@ -56,7 +65,7 @@ package org.pixelami.fxg.elements
 		
 		protected function OnAddedToStage(event:Event):void
 		{
-			trace(event);
+			//trace(event);
 		}
 	}
 }

@@ -1,3 +1,13 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Pixelami
+//  Copyright 2011 Original Authors (Alexander Syed et al)
+//  All Rights Reserved.
+//
+//  NOTICE: Pixelami permits you to use, modify, and distribute this file
+//  in accordance with the terms of the license agreement accompanying it.
+//
+////////////////////////////////////////////////////////////////////////////////
 
 package org.pixelami.fxg.elements
 {
@@ -7,14 +17,11 @@ package org.pixelami.fxg.elements
 	import org.pixelami.fxg.elements.filters.IFXGFilter;
 	import org.pixelami.fxg.elements.strokes.IFXGStroke;
 	
-	
-	
-	
 	public class FXGShapeElement extends FXGPlacedElement implements IFXGPaintable
 	{
 		
-		private var _width:Number // <length>: The width of the rectangle. A negative value is an error.
-		private var _height:Number //  <length>: The height of the rectangle. A negative value is an error.
+		private var _width:Number // <length>: 
+		private var _height:Number //  <length>: 
 		
 		
 		private var _fill:IFXGFill;
@@ -28,10 +35,12 @@ package org.pixelami.fxg.elements
 			super();
 		}
 		
+		/**
+		 * The width of the rectangle. A negative value is an error.
+		 */
 		override public function get width():Number
 		{
 			return _width;
-			//return super.width;
 		}
 		
 		override public function set width(value:Number):void
@@ -41,13 +50,14 @@ package org.pixelami.fxg.elements
 				_width = value;
 				invalidateDisplayList();
 			}
-			
 		}
 		
+		/**
+		 * The height of the rectangle. A negative value is an error.
+		 */
 		override public function get height():Number
 		{
 			return _height;
-			return super.height;
 		}
 		
 		override public function set height(value:Number):void
@@ -103,20 +113,18 @@ package org.pixelami.fxg.elements
 			super.updateDisplayList(unscaledWidth,unscaledHeight);
 			
 			
-			trace("Rect: updateDisplayList");
+			//trace("Rect: updateDisplayList");
 			
 			if(fill)
 			{
 				renderFill();
-				trace("Rect: renderFill complete");
+				//trace("Rect: renderFill complete");
 			}
-			
-			
 			
 			if(stroke)
 			{
 				renderStroke();
-				trace("Rect: renderStroke");
+				//trace("Rect: renderStroke");
 			}
 			
 			
@@ -125,9 +133,5 @@ package org.pixelami.fxg.elements
 		
 		protected function renderFill():void{}
 		protected function renderStroke():void{}
-		
-		
-		
-		
 	}
 }

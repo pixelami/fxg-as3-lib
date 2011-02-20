@@ -1,3 +1,14 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Pixelami
+//  Copyright 2011 Original Authors (Alexander Syed et al)
+//  All Rights Reserved.
+//
+//  NOTICE: Pixelami permits you to use, modify, and distribute this file
+//  in accordance with the terms of the license agreement accompanying it.
+//
+////////////////////////////////////////////////////////////////////////////////
+
 /*
 GradientBevelFilter
 Applies a Bevel effect to the input element, using a specified gradient to fill the bevel rather than a highlight and shadow color.

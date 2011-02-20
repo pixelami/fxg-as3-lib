@@ -1,14 +1,23 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Pixelami
+//  Copyright 2011 Original Authors (Alexander Syed et al)
+//  All Rights Reserved.
+//
+//  NOTICE: Pixelami permits you to use, modify, and distribute this file
+//  in accordance with the terms of the license agreement accompanying it.
+//
+////////////////////////////////////////////////////////////////////////////////
 
 package org.pixelami.fxg.elements
 {
 	import flash.display.Graphics;
 	import flash.display.Shape;
 	
-	
 	public class Rect extends FXGShapeElement
 	{
-		private var _radiusX:Number //  <length>: For rounded rectangles, the x-axis radius of the ellipse used to round off the corners of the rectangle. A negative value is an error. See the notes below about what happens if the attribute is not specified.
-		private var _radiusY:Number //  <length>: For rounded rectangles, the y-axis radius of the ellipse used to round off the corners of the rectangle. A negative value is an error See the notes below about what happens if the attribute is not specified.
+		private var _radiusX:Number //  <length>: 
+		private var _radiusY:Number //  <length>: 
 		
 		
 		public function Rect()
@@ -16,6 +25,9 @@ package org.pixelami.fxg.elements
 			super();
 		}
 		
+		/**
+		 * For rounded rectangles, the x-axis radius of the ellipse used to round off the corners of the rectangle. A negative value is an error. See the notes below about what happens if the attribute is not specified.
+		 */
 		public function get radiusX():Number
 		{
 			return _radiusX;
@@ -26,6 +38,9 @@ package org.pixelami.fxg.elements
 			_radiusX = value;
 		}
 
+		/**
+		 * For rounded rectangles, the y-axis radius of the ellipse used to round off the corners of the rectangle. A negative value is an error See the notes below about what happens if the attribute is not specified.
+		 */
 		public function get radiusY():Number
 		{
 			return _radiusY;

@@ -1,3 +1,14 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Pixelami
+//  Copyright 2011 Original Authors (Alexander Syed et al)
+//  All Rights Reserved.
+//
+//  NOTICE: Pixelami permits you to use, modify, and distribute this file
+//  in accordance with the terms of the license agreement accompanying it.
+//
+////////////////////////////////////////////////////////////////////////////////
+
 /*
 Text Formatting
 
@@ -196,6 +207,7 @@ package org.pixelami.fxg.elements
 			}
 			
 		}
+		
 		/*
 		public function get textElement():TextElement
 		{
@@ -392,7 +404,9 @@ package org.pixelami.fxg.elements
 			var fontSize:Number = fontSize;
 			var color:uint = color;
 			
-			//FontDescription(fontName:String = "_serif", fontWeight:String = "normal", fontPosture:String = "normal", fontLookup:String = "device", renderingMode:String = "cff", cffHinting:String = "horizontalStem")
+			//FontDescription args 
+			// fontName:String = "_serif", fontWeight:String = "normal", fontPosture:String = "normal", 
+			// fontLookup:String = "device", renderingMode:String = "cff", cffHinting:String = "horizontalStem"
 			var fd:FontDescription = new FontDescription(fontFamily,fontWeight,fontStyle);
 			var format:ElementFormat = new ElementFormat(fd, fontSize, color);
 			return format;

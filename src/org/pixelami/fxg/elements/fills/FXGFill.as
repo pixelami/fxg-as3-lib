@@ -1,3 +1,14 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Pixelami
+//  Copyright 2011 Original Authors (Alexander Syed et al)
+//  All Rights Reserved.
+//
+//  NOTICE: Pixelami permits you to use, modify, and distribute this file
+//  in accordance with the terms of the license agreement accompanying it.
+//
+////////////////////////////////////////////////////////////////////////////////
+
 package org.pixelami.fxg.elements.fills
 {
 	import flash.display.Graphics;
@@ -6,13 +17,16 @@ package org.pixelami.fxg.elements.fills
 	{
 		public static const GRADIENT_DIMENSION:Number = 1638.4;
 		
-		private var _alpha:Number = 1; // <Number>: A real number value ranging from 0 to 1 specifying the opacity of the fill, with 1 being opaque. Defaults to 1.
-		private var _color:uint; // <Color>: An RGB value (in the form #rrggbb) that defines the single color value to fill the shape with. Defaults to #000000.
+		private var _alpha:Number = 1;
+		private var _color:uint = 0x000000;
 		
 		public function FXGFill()
 		{
 		}
 		
+		/**
+		 * A real number value ranging from 0 to 1 specifying the opacity of the fill, with 1 being opaque. Defaults to 1.
+		 */
 		public function get alpha():Number
 		{
 			return _alpha;
@@ -23,6 +37,9 @@ package org.pixelami.fxg.elements.fills
 			_alpha = value;
 		}
 		
+		/**
+		 * An RGB value (in the form #rrggbb) that defines the single color value to fill the shape with. Defaults to #000000.
+		 */
 		public function get color():uint
 		{
 			return _color;
@@ -54,7 +71,5 @@ package org.pixelami.fxg.elements.fills
 		{
 			return _element;
 		}
-		
-		
 	}
 }

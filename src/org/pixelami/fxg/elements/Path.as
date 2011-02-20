@@ -1,6 +1,13 @@
-/**
- * Created by Alexander "Foo 'The Man' Choo" Syed (a.k.a. Captain Fantastic) 
- */
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Pixelami
+//  Copyright 2011 Original Authors (Alexander Syed et al)
+//  All Rights Reserved.
+//
+//  NOTICE: Pixelami permits you to use, modify, and distribute this file
+//  in accordance with the terms of the license agreement accompanying it.
+//
+////////////////////////////////////////////////////////////////////////////////
 
 package org.pixelami.fxg.elements
 {
@@ -13,7 +20,7 @@ package org.pixelami.fxg.elements
 	
 	public class Path extends FXGShapeElement
 	{
-		private var _data:String; // <path data>: The definition of the outline of a shape. See [Path data].
+		private var _data:String;
 		
 		private var pathSegments:PathSegmentsCollection;
 		private var graphicsPath:GraphicsPath;
@@ -25,7 +32,9 @@ package org.pixelami.fxg.elements
 			super();
 		}
 		
-		
+		/**
+		 * The definition of the outline of a shape. See [Path data].
+		 */
 		public function get data():String
 		{
 			return _data;
