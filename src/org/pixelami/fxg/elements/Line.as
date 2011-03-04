@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//  Pixelami
+//  pixelami.com
 //  Copyright 2011 Original Authors (Alexander Syed et al)
 //  All Rights Reserved.
 //
@@ -17,11 +17,6 @@ package org.pixelami.fxg.elements
 		private var _yFrom:Number = 0;
 		private var _xTo:Number = 0;
 		private var _yTo:Number = 0;
-		
-		public function Line()
-		{
-			super();
-		}
 		
 		/**
 		 * The x-axis starting point of the line. Defaults to 0.
@@ -74,6 +69,20 @@ package org.pixelami.fxg.elements
 		{
 			_yTo = value;
 		}
+		
+		
+		public function Line()
+		{
+			super();
+		}
 
+		override protected function renderFill():void
+		{
+		}
+		
+		override protected function renderStroke():void
+		{
+			stroke.doStroke(strokeShape.graphics);
+		}
 	}
 }

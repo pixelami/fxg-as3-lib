@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//  Pixelami
+//  pixelami.com
 //  Copyright 2011 Original Authors (Alexander Syed et al)
 //  All Rights Reserved.
 //
@@ -13,11 +13,43 @@ package org.pixelami.fxg.elements.fills
 {
 	public class GradientEntry
 	{
-		public var color:uint;
+		private var _color:uint;
 		
-		public var alpha:Number = 1;
+		private var _alpha:Number = 1;
 		
-		public var ratio:Number;
+		private  var _ratio:Number;
+		
+		
+		public function get color():uint
+		{
+			return _color;
+		}
+
+		public function set color(value:uint):void
+		{
+			_color = value;
+		}
+
+		public function get alpha():Number
+		{
+			return _alpha;
+		}
+
+		public function set alpha(value:Number):void
+		{
+			_alpha = value;
+		}
+
+		public function get ratio():Number
+		{
+			return _ratio;
+		}
+
+		public function set ratio(value:Number):void
+		{
+			_ratio = value;
+		}
+
 		
 		public function GradientEntry()
 		{

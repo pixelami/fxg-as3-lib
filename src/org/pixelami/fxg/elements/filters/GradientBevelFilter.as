@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//  Pixelami
-//  Copyright 2011 Original Authors (Alexander Syed et al)
+//  pixelami.com
+//  Copyright 2011 Original Authors
 //  All Rights Reserved.
 //
 //  NOTICE: Pixelami permits you to use, modify, and distribute this file
@@ -9,11 +9,9 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-/*
-GradientBevelFilter
-Applies a Bevel effect to the input element, using a specified gradient to fill the bevel rather than a highlight and shadow color.
 
-The gradient used in a GradientBevel is specified using child GradientEntry elements. See the section on gradient fills for more details.
+
+/*
 Attributes 
 
 * angle <Number>: The angle of the generated bevel. This angle is expressed in document coordinate space.
@@ -31,6 +29,12 @@ Children
 */
 package org.pixelami.fxg.elements.filters
 {
+	/**
+	 * <p>Applies a Bevel effect to the input element, using a specified gradient to fill the bevel rather than a highlight and shadow color.
+	 * </p>
+	 * <p>The gradient used in a GradientBevel is specified using child GradientEntry elements. See the section on gradient fills for more details.
+	 * </p>
+	 */
 	public class GradientBevelFilter extends FXGFilter
 	{
 		public function GradientBevelFilter()

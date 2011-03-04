@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//  Pixelami
+//  pixelami.com
 //  Copyright 2011 Original Authors (Alexander Syed et al)
 //  All Rights Reserved.
 //
@@ -29,8 +29,111 @@ Attributes
 */
 package org.pixelami.fxg.elements.fills
 {
-	public class BitmapFill extends FXGFill implements IFXGFill
+	public class BitmapFill extends FXGFill
 	{
+		private var _x:Number;
+		private var _y:Number;
+		private var _scaleX:Number;
+		private var _scaleY:Number;
+		private var _rotation:Number;
+		private var _transformX:Number;
+		private var _transformY:Number;
+		private var _source:String;
+		private var _repeat:Boolean;
+		
+		
+		public function get x():Number
+		{
+			return _x;
+		}
+
+		public function set x(value:Number):void
+		{
+			_x = value;
+		}
+
+		public function get y():Number
+		{
+			return _y;
+		}
+
+		public function set y(value:Number):void
+		{
+			_y = value;
+		}
+
+		public function get scaleX():Number
+		{
+			return _scaleX;
+		}
+
+		public function set scaleX(value:Number):void
+		{
+			_scaleX = value;
+		}
+
+		public function get scaleY():Number
+		{
+			return _scaleY;
+		}
+
+		public function set scaleY(value:Number):void
+		{
+			_scaleY = value;
+		}
+
+		public function get rotation():Number
+		{
+			return _rotation;
+		}
+
+		public function set rotation(value:Number):void
+		{
+			_rotation = value;
+		}
+
+		public function get transformX():Number
+		{
+			return _transformX;
+		}
+
+		public function set transformX(value:Number):void
+		{
+			_transformX = value;
+		}
+
+		public function get transformY():Number
+		{
+			return _transformY;
+		}
+
+		public function set transformY(value:Number):void
+		{
+			_transformY = value;
+		}
+
+		public function get source():String
+		{
+			return _source;
+		}
+
+		public function set source(value:String):void
+		{
+			_source = value;
+		}
+
+		public function get repeat():Boolean
+		{
+			return _repeat;
+		}
+
+		public function set repeat(value:Boolean):void
+		{
+			_repeat = value;
+		}
+
+		
+		
 		public function BitmapFill()
 		{
 			super();

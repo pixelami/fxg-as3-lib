@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//  Pixelami
+//  pixelami.com
 //  Copyright 2011 Original Authors (Alexander Syed et al)
 //  All Rights Reserved.
 //
@@ -9,11 +9,6 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-/*
-* x <Number>: The left edge of the image rectangle, in the parent coordinate system. Defaults to 0.
-* y <Number>: The top edge of the image rectangle, in the parent coordinate system. Defaults to 0.
-* visible <Boolean>: Whether or not the BitmapGraphic is visible. Defaults to true.
-*/
 package org.pixelami.fxg.elements
 {
 	import flash.display.Bitmap;
@@ -21,6 +16,7 @@ package org.pixelami.fxg.elements
 	import flash.events.Event;
 	import flash.net.URLRequest;
 	
+	import org.pixelami.fxg.utils.FXGUtil;
 	import org.pixelami.fxg.utils.LayoutUtils;
 	
 	
@@ -164,28 +160,7 @@ package org.pixelami.fxg.elements
 		// TODO move to utils class
 		protected function extractEmbedURL(source:String):String
 		{
-			// handle escaped strings
-			trace("original source: "+source);
-			var src:String = unescape(source);
-			
-			
-			
-			trace("unescaped source: "+src);
-			var p:RegExp = /^@Embed\('(.*[^\)])'\)/i;
-			var m:Object = p.exec(source);
-			trace("Embed match: :"+m);
-			if(m)
-			{
-				src = m[1];
-			}
-			
-			// fix path for url
-			if(source.indexOf("http:") != 0 && source.indexOf("file:") != 0)
-			{
-				source = "file://" +source;
-			}
-			
-			return src;
+			return FXGUtil.extractEmbedURL(source);
 		}
 	}
 }

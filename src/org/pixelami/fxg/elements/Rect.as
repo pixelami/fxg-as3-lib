@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//  Pixelami
+//  pixelami.com
 //  Copyright 2011 Original Authors (Alexander Syed et al)
 //  All Rights Reserved.
 //
@@ -16,8 +16,8 @@ package org.pixelami.fxg.elements
 	
 	public class Rect extends FXGShapeElement
 	{
-		private var _radiusX:Number //  <length>: 
-		private var _radiusY:Number //  <length>: 
+		private var _radiusX:Number;
+		private var _radiusY:Number;
 		
 		
 		public function Rect()

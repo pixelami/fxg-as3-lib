@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//  Pixelami
+//  pixelami.com
 //  Copyright 2011 Original Authors (Alexander Syed et al)
 //  All Rights Reserved.
 //
@@ -182,6 +182,36 @@ package org.pixelami.fxg.utils
 			rect.bottom = maxY;
 			
 			return rect;
+		}
+		
+		/** 
+		 * @param source an emebedded url string
+		 * @return the url from an emebedded url string
+		 */
+		public static function extractEmbedURL(source:String):String
+		{
+			// handle escaped strings
+			trace("original source: "+source);
+			var src:String = unescape(source);
+			
+			
+			
+			trace("unescaped source: "+src);
+			var p:RegExp = /^@Embed\('(.*[^\)])'\)/i;
+			var m:Object = p.exec(source);
+			trace("Embed match: :"+m);
+			if(m)
+			{
+				src = m[1];
+			}
+			
+			// fix path for url
+			if(source.indexOf("http:") != 0 && source.indexOf("file:") != 0)
+			{
+				source = "file://" +source;
+			}
+			
+			return src;
 		}
 		
 	}

@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//  Pixelami
+//  pixelami.com
 //  Copyright 2011 Original Authors (Alexander Syed et al)
 //  All Rights Reserved.
 //
@@ -172,7 +172,6 @@ package org.pixelami.fxg.elements
 		override public function get visible():Boolean
 		{
 			return _visible;
-			//return super.visible;
 		}
 
 		override public function set visible(value:Boolean):void
@@ -181,17 +180,8 @@ package org.pixelami.fxg.elements
 			if(_visible != value)
 			{
 				_visible = value;
-				
 				invalidateDisplayList();
 			}
-			/*
-			if(super.visible != value)
-			{
-				super.visible = value;
-				
-				//invalidateDisplayList();
-			}
-			*/
 		}
 
 		

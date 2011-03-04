@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//  Pixelami
-//  Copyright 2011 Original Authors (Alexander Syed et al)
+//  pixelami.com
+//  Copyright 2011 Original Authors
 //  All Rights Reserved.
 //
 //  NOTICE: Pixelami permits you to use, modify, and distribute this file
@@ -13,6 +13,22 @@ package org.pixelami.fxg.elements.filters
 {
 	public class FXGFilter implements IFXGFilter
 	{
+		private var _quality:Number = 2;
+		
+		/**
+		 * The quality of the rendered effect.
+		 */
+		public function get quality():Number
+		{
+			return _quality;
+		}
+
+		public function set quality(value:Number):void
+		{
+			_quality = value;
+		}
+
+		
 		public function FXGFilter()
 		{
 		}

@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//  Pixelami
+//  pixelami.com
 //  Copyright 2011 Original Authors (Alexander Syed et al)
 //  All Rights Reserved.
 //
@@ -174,7 +174,6 @@ package org.pixelami.fxg.elements.fills
 			matrix = new Matrix();
 		}
 		
-		
 		////////////////////////////////////////////////////////////////////////////////
 		//
 		//  ADOBE SYSTEMS INCORPORATED
@@ -185,6 +184,7 @@ package org.pixelami.fxg.elements.fills
 		//  in accordance with the terms of the license agreement accompanying it.
 		//
 		////////////////////////////////////////////////////////////////////////////////
+		
 		public function createMatrix(bounds:Rectangle):void
 		{
 			var commonMatrix:Matrix = new Matrix();
@@ -283,17 +283,6 @@ package org.pixelami.fxg.elements.fills
 			
 			commonMatrix.translate(tx, ty);	
 			
-			
-			//trace("tx: "+tx);
-			//trace("ty: "+ty);
-			//trace("sx: "+sx);
-			//trace("sy: "+sy);
-			
-			
-			// get the target width and height
-			//var parentElement:XML = element.parent().parent();
-			//trace(parentElement.toString());
-			
 			if(sy == 0)
 			{
 				// work out the bounds of gradient
@@ -301,20 +290,10 @@ package org.pixelami.fxg.elements.fills
 				var p1:Point = Point.polar(sx,radians);
 			
 				var p2:Point = p1.add(p0);
-				//trace("p1: "+p1);
-				//trace("p2: "+p2);
 				
 				var grect:Rectangle = new Rectangle(p2.x,p2.y,Math.abs(p1.x),Math.abs(p1.y));
 				grect = grect.union(bounds);
-				//trace("grect 1: "+grect);
 				
-				
-				//trace("grect left: "+grect.left);
-				//trace("greact right: "+grect.right);
-				
-				
-				//trace("bounds left: "+bounds.left);
-				//trace("bounds top: "+bounds.top);
 				
 				// top postion of gradient
 				tx = p0.x + p1.x;
@@ -339,11 +318,6 @@ package org.pixelami.fxg.elements.fills
 		
 		override public function beginFill(value:Graphics):void
 		{
-			//trace("LinearGradient beginFill");
-			//trace("colors: "+colors);
-			//trace("alphas: "+alphas);
-			//trace("ratios: "+ratios);
-			//trace("matrix: "+matrix);
 			value.beginGradientFill(GradientType.LINEAR,colors,alphas,ratios,matrix,spreadMethod,interpolationMethod,focalPointRatio);
 		}
 		

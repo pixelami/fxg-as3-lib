@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//  Pixelami
-//  Copyright 2011 Original Authors (Alexander Syed et al)
+//  pixelami.com
+//  Copyright 2011 Original Authors
 //  All Rights Reserved.
 //
 //  NOTICE: Pixelami permits you to use, modify, and distribute this file

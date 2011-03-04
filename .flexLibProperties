@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
-  <includeClasses/>
+  <includeClasses>
+    <classEntry path="org.pixelami.fxg.FXGUtilTests"/>
+    <classEntry path="org.pixelami.fxg.elements.fills.IFXGGradientFill"/>
+  </includeClasses>
   <includeResources>
     <resourceEntry destPath="design.xml" sourcePath="design.xml"/>
   </includeResources>

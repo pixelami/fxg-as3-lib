@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//  Pixelami
+//  pixelami.com
 //  Copyright 2011 Original Authors (Alexander Syed et al)
 //  All Rights Reserved.
 //
@@ -9,24 +9,6 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-/*
-Children
-
-* Library
-* Group
-* Any graphical element
-
-Attributes
-
-* scaleGridLeft
-* scaleGridRight
-* scaleGridTop
-* scaleGridBottom
-* viewWidth
-* viewHeight
-* version
-* mask
-*/
 package org.pixelami.fxg.elements
 {
 	

@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//  Pixelami
+//  pixelami.com
 //  Copyright 2011 Original Authors (Alexander Syed et al)
 //  All Rights Reserved.
 //
@@ -12,7 +12,6 @@
 package org.pixelami.fxg.elements
 {
 	import flash.display.Graphics;
-	
 	
 	public class Ellipse extends FXGShapeElement
 	{

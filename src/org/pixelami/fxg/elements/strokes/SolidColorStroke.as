@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//  Pixelami
-//  Copyright 2011 Original Authors (Alexander Syed et al)
+//  pixelami.com
+//  Copyright 2011 Original Authors
 //  All Rights Reserved.
 //
 //  NOTICE: Pixelami permits you to use, modify, and distribute this file
@@ -9,24 +9,15 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-/*
-SolidColorStroke
-
-The SolidColorStroke element represents a stroke painted with a solid color, or a solid color with opacity. It is similar to the SolidColor fill type.
-Children
-
-None.
-Attributes
-
-* weight <Number>: The line weight, in pixels. Defaults to 1.
-
-*/
 package org.pixelami.fxg.elements.strokes
 {
 	import flash.display.Graphics;
 	
 	import org.pixelami.fxg.utils.FXGUtil;
 
+	/**
+	 * The SolidColorStroke element represents a stroke painted with a solid color, or a solid color with opacity. It is similar to the SolidColor fill type.
+	 */
 	public class SolidColorStroke implements IFXGStroke
 	{
 		private var _thickness:Number = 1;
@@ -44,20 +35,20 @@ package org.pixelami.fxg.elements.strokes
 		}
 		
 		/**
-		 * weight <Number>: The line weight, in pixels. Defaults to 1.
+		 * Alternate accessor for <code>weight<code> The line weight, in pixels. Defaults to 1.
 		 */
 		public function get thickness():Number
 		{
-			return _thickness;
+			return _weight;
 		}
 
 		public function set thickness(value:Number):void
 		{
-			_thickness = value;
+			_weight = value;
 		}
 		
 		/**
-		 * weight <Number>: The line weight, in pixels. Defaults to 1.
+		 * The line weight, in pixels. Defaults to 1.
 		 */
 		public function get weight():Number
 		{
@@ -163,7 +154,6 @@ package org.pixelami.fxg.elements.strokes
 		
 		public function doStroke(value:Graphics):void
 		{
-			
 			value.lineStyle(thickness,color,alpha,pixelHinting,scaleMode,caps,joints,miterLimit);
 		}
 		private var _element:XML;

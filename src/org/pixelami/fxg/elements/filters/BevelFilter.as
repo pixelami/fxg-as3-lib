@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-//  Pixelami
-//  Copyright 2011 Original Authors (Alexander Syed et al)
+//  pixelami.com
+//  Copyright 2011 Original Authors
 //  All Rights Reserved.
 //
 //  NOTICE: Pixelami permits you to use, modify, and distribute this file
@@ -25,9 +25,21 @@
 
 */
 package org.pixelami.fxg.elements.filters
-{
+{	
 	public class BevelFilter extends FXGFilter
 	{
+		private var angle:Number;
+		private var blurX:Number;
+		private var blurY:Number;
+		private var highlightAlpha:Number;
+		private var highlightColor:uint;
+		private var distance:Number;
+		private var knockout:Boolean;
+		private var shadowAlpha:Number;
+		private var shadowColor:Number;
+		private var strength:Number;
+		private var type:String;
+		
 		public function BevelFilter()
 		{
 			super();
