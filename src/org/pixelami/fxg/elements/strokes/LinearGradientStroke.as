@@ -37,7 +37,7 @@ package org.pixelami.fxg.elements.strokes
 		
 		// GradientEntry
 		private var _entries:Vector.<GradientEntry>;
-		private var matrix;
+		private var matrix:;
 		
 		/**
 		 * The horizontal translation of the gradient transform that defines the horizontal center of the gradient.
