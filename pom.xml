@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project 
+	xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+	>
+  <modelVersion>4.0.0</modelVersion>
+  
+  <groupId>org.pixelami</groupId>
+  <artifactId>fxg-lib</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>swc</packaging>
+
+  <name>Pure AS3 FXG Rendering Library</name>
+  
+  <properties>
+	<flex.sdk.version>4.1.0.16076</flex.sdk.version>
+	<flexunit.version>4.0-rc-1</flexunit.version>
+	<flexmojos.version>3.9</flexmojos.version>
+	<flashplayer.version>10.1</flashplayer.version>
+  </properties>
+  
+  <build>
+  	<sourceDirectory>src/main/actionscript</sourceDirectory>
+    <testSourceDirectory>src/test/actionscript</testSourceDirectory>
+	
+    <plugins>
+  	  <plugin>
+        <groupId>org.sonatype.flexmojos</groupId>
+        <artifactId>flexmojos-maven-plugin</artifactId>
+        <version>${flexmojos.version}</version>
+        <extensions>true</extensions>
+        <dependencies>
+          <dependency>
+            <groupId>com.adobe.flex</groupId>
+            <artifactId>compiler</artifactId>
+            <version>${flex.sdk.version}</version>
+            <type>pom</type>
+          </dependency>
+        </dependencies>
+      </plugin>
+    </plugins>
+  </build>
+  
+  <dependencies>
+  	
+    <dependency>
+      <groupId>com.adobe.flex.framework</groupId>
+      <artifactId>flex-framework</artifactId>
+      <version>${flex.sdk.version}</version>
+      <type>pom</type>
+    </dependency>
+
+    <dependency>
+      <groupId>com.adobe.flexunit</groupId>
+      <artifactId>flexunit</artifactId>
+      <version>${flexunit.version}</version>
+      <type>swc</type>
+      <scope>test</scope>
+    </dependency>
+	
+	<dependency>
+	  <groupId>com.adobe.flex.framework</groupId>
+	  <artifactId>playerglobal</artifactId>
+	  <version>${flex.sdk.version}</version>
+	  <classifier>${flashplayer.version}</classifier>
+	  <type>swc</type>
+	</dependency>
+	
+  </dependencies>
+  
+  <distributionManagement>
+    <repository>
+      <id>nexus</id>
+      <name>Nexus Staging Repo</name>
+   	  <url>http://localhost:8081/nexus/content/repositories/snapshots/</url>
+    </repository>
+  </distributionManagement>
+
+</project>
