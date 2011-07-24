@@ -22,7 +22,7 @@ package org.pixelami.fxg.elements.filters
 	 */
 	
 	[DefaultProperty("entries")]
-	public class GradientGlowFilter extends StandardFilterBase
+	public class GradientGlowFilter extends FXGStandardFilterBase
 	{
 		
 		private var _entries:Vector.<GradientEntry>;

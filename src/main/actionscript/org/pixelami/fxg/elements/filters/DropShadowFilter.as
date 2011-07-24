@@ -15,7 +15,7 @@ package org.pixelami.fxg.elements.filters
 	
 	import org.pixelami.fxg.utils.SchemaTypeRegistry;
 
-	public class DropShadowFilter extends StandardFilterBase
+	public class DropShadowFilter extends FXGStandardFilterBase
 	{
 		private var _color:uint = 0;
 		private var _alpha:Number = 1; 

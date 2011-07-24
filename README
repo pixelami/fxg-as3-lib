@@ -1,6 +1,6 @@
-Initial incomplete implentation of FXG in Pure AS3.
+Pure Actionscript 3 implementation of FXG.
 
-Contains run-time renderer and can be used in MXML AS3 Projects without Flex libs.
+Contains run-time renderer and can be used in MXML or AS3 Projects without requiring the Flex SDK libraries.
 
 // Visual elements
 Graphic - implemented
@@ -12,27 +12,27 @@ Rect - implemented
 			
 // Fills
 LinearGradient - implemented
-*RadialGradient - implemented (untested)
-*BitmapFill - implemented (untested)
+RadialGradient - implemented (untested)
+BitmapFill - implemented (untested)
 SolidColor - implemented
 			
 			
 // Strokes
 SolidColorStroke - implemented
-*LinearGradientStroke - implemented (untested)
-*RadialGradientStroke - implemented (untested)
+LinearGradientStroke - implemented (untested)
+RadialGradientStroke - implemented (untested)
 			
 // Filters
 DropShadowFilter - implemented
-*BlurFilter - implemented (untested)
-*BevelFilter - implemented (untested)
-*ColorMatrixFilter - implemented (untested)
-*GradientBevelFilter - implemented (untested)
-*GradientGlowFilter - implemented (untested)
+BlurFilter - implemented (untested)
+BevelFilter - implemented (untested)
+ColorMatrixFilter - implemented (untested)
+GradientBevelFilter - implemented (untested)
+GradientGlowFilter - implemented (untested)
 			
 // Text
 TextGraphic - implemented 
-(paragraph,span,br not implemented)
+*(paragraph,span,br not implemented)
 			
 //Bitmap
 BitmapGraphic - implemented

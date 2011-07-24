@@ -30,7 +30,7 @@ package org.pixelami.fxg.elements.filters
 	 */
 	
 	[DefaultProperty("entries")]
-	public class GradientBevelFilter extends StandardFilterBase
+	public class GradientBevelFilter extends FXGStandardFilterBase
 	{
 		
 		private var _entries:Vector.<GradientEntry>;

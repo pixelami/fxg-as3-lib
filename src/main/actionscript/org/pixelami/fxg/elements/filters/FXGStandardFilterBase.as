@@ -11,7 +11,7 @@
 
 package org.pixelami.fxg.elements.filters
 {
-	public class StandardFilterBase extends BlurFilter
+	public class FXGStandardFilterBase extends BlurFilter
 	{
 		private var _angle:Number;
 		private var _distance:Number;

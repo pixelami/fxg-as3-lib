@@ -14,7 +14,7 @@ package org.pixelami.fxg.elements.filters
 {	
 	import flash.filters.BevelFilter;
 
-	public class BevelFilter extends StandardFilterBase
+	public class BevelFilter extends FXGStandardFilterBase
 	{
 		private var _highlightAlpha:Number = 0.5;
 		private var _highlightColor:uint = 0xFFFFFF;
