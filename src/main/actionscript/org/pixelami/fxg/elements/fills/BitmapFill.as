@@ -9,26 +9,15 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-/*
-Children
 
-* matrix
-
-Attributes
-
-* x <Number>: The horizontal translation of the transform that defines the horizontal center of the gradient.
-* y <Number>: The vertical translation of the transform that defines the vertical center of the gradient.
-* scaleX <Number>: The horizontal scale of the transform that defines the width of the (unrotated) gradient.
-* scaleY <Number>: The vertical scale of the transform that defines the width of the (unrotated) gradient.
-* rotation <Number> (<angle>): The rotation of the transform.
-* transformX <Number>: The horizontal point of origin for the scale and rotation portions of the transform.
-* transformY <Number>: The vertical point of origin for the scale and rotation portions of the transform.
-* source <embedded bitmap>: A reference to the file containing the image data to use as fill.
-* repeat <Boolean>: Whether the image data should be rendered once, or tiled to fill an infinite plane.
-
-*/
 package org.pixelami.fxg.elements.fills
 {
+	/*
+	Children
+	
+	* matrix
+	*/
+	
 	public class BitmapFill extends FXGFill
 	{
 		private var _x:Number;
@@ -41,16 +30,24 @@ package org.pixelami.fxg.elements.fills
 		private var _source:String;
 		private var _repeat:Boolean;
 		
+		/**
+		 * The horizontal translation of the transform that defines the horizontal center of the gradient.
+		 */
 		
 		public function get x():Number
 		{
 			return _x;
 		}
 
+		
 		public function set x(value:Number):void
 		{
 			_x = value;
 		}
+		
+		/**
+		 * The vertical translation of the transform that defines the vertical center of the gradient.
+		 */
 
 		public function get y():Number
 		{
@@ -61,6 +58,10 @@ package org.pixelami.fxg.elements.fills
 		{
 			_y = value;
 		}
+		
+		/**
+		 * The horizontal scale of the transform that defines the width of the (unrotated) gradient.
+		 */
 
 		public function get scaleX():Number
 		{
@@ -71,6 +72,10 @@ package org.pixelami.fxg.elements.fills
 		{
 			_scaleX = value;
 		}
+		
+		/**
+		 * The vertical scale of the transform that defines the width of the (unrotated) gradient.
+		 */
 
 		public function get scaleY():Number
 		{
@@ -81,6 +86,10 @@ package org.pixelami.fxg.elements.fills
 		{
 			_scaleY = value;
 		}
+		
+		/**
+		 * The rotation of the transform.
+		 */
 
 		public function get rotation():Number
 		{
@@ -96,6 +105,10 @@ package org.pixelami.fxg.elements.fills
 		{
 			return _transformX;
 		}
+		
+		/**
+		 * The horizontal point of origin for the scale and rotation portions of the transform.
+		 */
 
 		public function set transformX(value:Number):void
 		{
@@ -106,11 +119,19 @@ package org.pixelami.fxg.elements.fills
 		{
 			return _transformY;
 		}
+		
+		/**
+		 * The vertical point of origin for the scale and rotation portions of the transform.
+		 */
 
 		public function set transformY(value:Number):void
 		{
 			_transformY = value;
 		}
+		
+		/**
+		 * A reference to the file containing the image data to use as fill.
+		 */
 
 		public function get source():String
 		{
@@ -121,6 +142,10 @@ package org.pixelami.fxg.elements.fills
 		{
 			_source = value;
 		}
+		
+		/**
+		 * Whether the image data should be rendered once, or tiled to fill an infinite plane.
+		 */
 
 		public function get repeat():Boolean
 		{

@@ -302,19 +302,12 @@ package org.pixelami.fxg.elements.fills
 			}
 
 		}
-		
-		
-		public function LinearGradient()
-		{
-			
-		}
+
 		
 		override public function beginFill(value:Graphics):void
 		{
 			value.beginGradientFill(GradientType.LINEAR,colors,alphas,ratios,matrix,spreadMethod,interpolationMethod,focalPointRatio);
 		}
-		
-		
-		
+
 	}
 }

@@ -13,23 +13,14 @@ package org.pixelami.fxg.utils
 {
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
-	
 	import mx.utils.ObjectUtil;
 	
-	/**
-	 * 
-	 * @author a
-	 * 
-	 */
+	import org.pixelami.fxg.elements.fills.GradientEntry;
+	
+	[ExcludeClass]
 	public class FXGUtil
 	{
-		/**
-		 * 
-		 * 
-		 */
-		public function FXGUtil()
-		{
-		}
+
 		
 		/**
 		 * Helper method to get a color value from an XML document
@@ -115,7 +106,6 @@ package org.pixelami.fxg.utils
 			var xcount:Number = 0;
 			//pattern to get all digits
 			var re:RegExp = /(-?\d+\.?\d*)/;
-			//var re:RegExp = /(\d|-)?(\d|,)*\.?\d*/
 			var m:Object = re.exec(data);
 			var numbers:Array = [];
 			var str:String;
@@ -143,14 +133,7 @@ package org.pixelami.fxg.utils
 				index += (m.index + m[1].length);
 				str = data.substring(index);
 				m = re.exec(str);
-				//trace("m: "+ObjectUtil.toString(m));
-				
-				
 			}
-			//);
-			trace("numbers: "+numbers);
-			trace("numbers length: "+numbers.length);
-			trace("xcount:"+xcount);
 			var rect:Rectangle = new Rectangle();
 			rect.left = minX;
 			rect.right = maxX;
@@ -191,15 +174,9 @@ package org.pixelami.fxg.utils
 		public static function extractEmbedURL(source:String):String
 		{
 			// handle escaped strings
-			trace("original source: "+source);
 			var src:String = unescape(source);
-			
-			
-			
-			trace("unescaped source: "+src);
 			var p:RegExp = /^@Embed\('(.*[^\)])'\)/i;
 			var m:Object = p.exec(source);
-			trace("Embed match: :"+m);
 			if(m)
 			{
 				src = m[1];
@@ -212,6 +189,27 @@ package org.pixelami.fxg.utils
 			}
 			
 			return src;
+		}
+		
+		public static function getColorsAlphasRatiosFromGradientEntries(entries:Vector.<GradientEntry>):Object
+		{
+			var o:Object = {};
+			o.colors = [];
+			o.alphas = [];
+			o.ratios = [];
+			
+			var count:uint = 0;
+			for each(var ge:GradientEntry in entries)
+			{
+				o.colors.push(ge.color);
+				o.alphas.push(ge.alpha);
+				var rat:Number = isNaN(ge.ratio) ? count * (1/(entries.length - 1)) : ge.ratio;
+				// flash internal ratios are between 0-255
+				var rtio:uint = rat * 255;
+				o.ratios.push(rtio);
+			}
+			
+			return o;
 		}
 		
 	}

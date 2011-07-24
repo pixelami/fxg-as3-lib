@@ -9,28 +9,24 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-
-
 package org.pixelami.fxg.elements.strokes
 {
+	import flash.display.GradientType;
 	import flash.display.Graphics;
 	import flash.geom.Matrix;
 	
 	import org.pixelami.fxg.elements.fills.GradientEntry;
+	import org.pixelami.fxg.utils.FXGUtil;
 
-	[DefaultProperty("entries")]
+	
 	/**
 	 * <p>The RadialGradient element fills a path or shape with a continuously smooth color transition between a list of colors along the radius of a circle.
-	 * </p>
 	 * <p>The circle used is the circle bounded by the box stretching from (-0.5, -0.5) to (0.5,0.5). Like LinearGradient, it is transformed by the matrix transform defined on the gradient.
-	 * </p>
 	 * <p>RadialGradient supports all the same transform attributes and child elements that LinearGradient does. Additionally, because its rendering is defined by a box and not just a horizontal vector, it supports a scaleY attribute that is used along with scaleX to scale the bounding box before the other transform attributes are applied.
-	 * </p>
 	 * <p>RadialGradient elements also define the attribute focalPointRatio. This defines where along the horizontal axis (of the untransformed box) the focal point of the radial gradient lies. A value of 1 places it at the right hand edge of the box (at 0.5,0). A value of -1 places it at the left hand edge of the box (at -0.5,0).
-	 * </p>
 	 * <p>RadialGradient elements use child GradientEntry elements the same way LinearGradient elements do.
-	 * </p>
 	 */
+	[DefaultProperty("entries")]
 	public class RadialGradientStroke implements IFXGStroke
 	{
 		private var _x:Number;
@@ -166,7 +162,8 @@ package org.pixelami.fxg.elements.strokes
 		
 		public function doStroke(value:Graphics):void
 		{
-			
+			var o:Object = FXGUtil.getColorsAlphasRatiosFromGradientEntries(entries);
+			value.lineGradientStyle(GradientType.RADIAL,o.colors,o.alphas,o.ratios,matrix,spreadMethod,interpolationMethod,focalPointRatio);
 		}
 	}
 }

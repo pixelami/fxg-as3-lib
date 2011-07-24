@@ -27,11 +27,6 @@ package org.pixelami.fxg.elements.filters
 		{
 			_quality = value;
 		}
-
-		
-		public function FXGFilter()
-		{
-		}
 		
 		public function getFilter():*
 		{

@@ -12,34 +12,45 @@
 
 
 /*
-Attributes 
-
-* angle <Number>: The angle of the generated bevel. This angle is expressed in document coordinate space.
-* blurX <Number>: The amount of blur applied to the rendered content in the horizontal.
-* blurY <Number>: The amount of blur applied to the rendered content in the horizontal.
-* distance <Number>: The height of the bevel.
-* knockout <Boolean> Renders the effect only where the value in the original content was 100% transparent. All other pixels are 100% transparent.
-* quality <Number> The quality of the rendered effect.
-* strength <Number> The strength of the imprint or spread. The higher the value, the more color is imprinted and the stronger the contrast between the bevel and the background. Valid values are from 0 to 255.0. The default is 1.0.
-* type <String> (inner, outer, full): The placement of the bevel on the object. Defaults to "inner".
-
 Children
 
 * GradientEntry
 */
 package org.pixelami.fxg.elements.filters
 {
+	import flash.filters.GradientBevelFilter;
+	
+	import org.pixelami.fxg.elements.fills.GradientEntry;
+	import org.pixelami.fxg.elements.fills.IFXGFill;
+	import org.pixelami.fxg.utils.FXGUtil;
+
 	/**
 	 * <p>Applies a Bevel effect to the input element, using a specified gradient to fill the bevel rather than a highlight and shadow color.
-	 * </p>
-	 * <p>The gradient used in a GradientBevel is specified using child GradientEntry elements. See the section on gradient fills for more details.
-	 * </p>
+	 * <p>The gradient used in a GradientBevel is specified using child GradientEntry elements. See the section on gradient fills for more details. 
 	 */
-	public class GradientBevelFilter extends FXGFilter
+	
+	[DefaultProperty("entries")]
+	public class GradientBevelFilter extends StandardFilterBase
 	{
-		public function GradientBevelFilter()
+		
+		private var _entries:Vector.<GradientEntry>;
+		
+		public function get entries():Vector.<GradientEntry>
 		{
-			super();
+			return _entries;
+		}
+		
+		public function set entries(value:Vector.<GradientEntry>):void
+		{
+			_entries = value;
+		}
+		
+		override public function getFilter():*
+		{
+			var o:Object = FXGUtil.getColorsAlphasRatiosFromGradientEntries(entries);
+			
+			var f:flash.filters.GradientBevelFilter = new flash.filters.GradientBevelFilter(
+				distance,angle,o.colors,o.alphas,o.ratios,blurX,blurY,strength,quality,type,knockout);
 		}
 	}
 }

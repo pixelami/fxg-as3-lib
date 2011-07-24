@@ -11,16 +11,19 @@
 
 package org.pixelami.fxg.elements.strokes
 {
+	import flash.display.GradientType;
 	import flash.display.Graphics;
 	
 	import org.pixelami.fxg.elements.fills.GradientEntry;
+	import org.pixelami.fxg.elements.transforms.Matrix;
+	import org.pixelami.fxg.utils.FXGUtil;
 
 	[DefaultProperty("entries")]
 	
 	/**
-	 * The LinearGradientStroke paints a stroke along a path or shape with a continuously smooth color transition between a list of colors along a vector. 
-	 * The LinearGradientStroke operates almost identically to the LinearGradient fill type. As with the fill, By default, a LinearGradientStroke is transformed to fill the bounding box of the path being stroked. The bounding box is computed by computing the bounding box of the anchor points of the path, and expanding its borders outward in each direction by half the weight of the stroke.
-	 * Otherwise its rendering behavior is identical to that of the LinearGradientFill.
+	 * <p>The LinearGradientStroke paints a stroke along a path or shape with a continuously smooth color transition between a list of colors along a vector. 
+	 * <p>The LinearGradientStroke operates almost identically to the LinearGradient fill type. As with the fill, By default, a LinearGradientStroke is transformed to fill the bounding box of the path being stroked. The bounding box is computed by computing the bounding box of the anchor points of the path, and expanding its borders outward in each direction by half the weight of the stroke.
+	 * <p>Otherwise its rendering behavior is identical to that of the LinearGradientFill.
 	 */
 	public class LinearGradientStroke  implements IFXGStroke
 	{
@@ -37,7 +40,7 @@ package org.pixelami.fxg.elements.strokes
 		
 		// GradientEntry
 		private var _entries:Vector.<GradientEntry>;
-		private var matrix:Object;
+		private var matrix:Matrix;
 		
 		/**
 		 * The horizontal translation of the gradient transform that defines the horizontal center of the gradient.
@@ -188,7 +191,9 @@ package org.pixelami.fxg.elements.strokes
 				
 		public function doStroke(value:Graphics):void
 		{
-			
+			var o:Object = FXGUtil.getColorsAlphasRatiosFromGradientEntries(entries);
+			var focalPointRatio:Number = 0;
+			value.lineGradientStyle(GradientType.LINEAR,o.colors,o.alphas,o.ratios,matrix.getMatrix(),spreadMethod,interpolationMethod,focalPointRatio);
 		}
 				
 

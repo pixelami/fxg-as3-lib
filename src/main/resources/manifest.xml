@@ -17,5 +17,7 @@
     <component id="LinearGradientStroke" class="org.pixelami.fxg.elements.strokes.LinearGradientStroke"/>
     <component id="RadialGradientStroke" class="org.pixelami.fxg.elements.strokes.RadialGradientStroke"/>
     <component id="DropShadowFilter" class="org.pixelami.fxg.elements.filters.DropShadowFilter"/>
-    
+	<component id="BlurFilter" class="org.pixelami.fxg.elements.filters.BlurFilter"/>
+	<component id="GradientBevelFilter" class="org.pixelami.fxg.elements.filters.GradientBevelFilter"/>
+	<component id="GradientGlowFilter" class="org.pixelami.fxg.elements.filters.GradientGlowFilter"/>
 </componentPackage>

@@ -11,7 +11,7 @@
 
 package org.pixelami.fxg.elements.filters
 {
-	public class BlurFilter
+	public class BlurFilter extends FXGFilter
 	{
 		private var _blurX:Number;
 		private var _blurY:Number;
@@ -29,22 +29,19 @@ package org.pixelami.fxg.elements.filters
 		{
 			_blurX = value;
 		}
+		
+		/**
+		 * The amount of blur applied to the rendered content in the vertical.
+		 */
 
 		public function get blurY():Number
 		{
 			return _blurY;
 		}
-
-		/**
-		 * The amount of blur applied to the rendered content in the vertical.
-		 */
+		
 		public function set blurY(value:Number):void
 		{
 			_blurY = value;
-		}
-		
-		public function BlurFilter()
-		{
 		}
 	}
 }

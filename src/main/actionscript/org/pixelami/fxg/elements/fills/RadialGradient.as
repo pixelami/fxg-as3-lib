@@ -9,16 +9,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-/**
- * RadialGradient
- * 
- * The RadialGradient element fills a path or shape with a continuously smooth color transition between a list of colors along the radius of a circle.
- * The circle used is the circle bounded by the box stretching from (-0.5, -0.5) to (0.5,0.5). Like LinearGradient, it is transformed by the matrix transform defined on the gradient.
- * RadialGradient supports all the same transform attributes and child elements that LinearGradient does. Additionally, because its rendering is defined by a box and not just a horizontal vector, it supports a scaleY attribute that is used along with scaleX to scale the bounding box before the other transform attributes are applied.
- * RadialGradient elements also define the attribute focalPointRatio. This defines where along the horizontal axis (of the untransformed box) the focal point of the radial gradient lies. A value of 1 places it at the right hand edge of the box (at 0.5,0). A value of -1 places it at the left hand edge of the box (at -0.5,0).
- * 
- * RadialGradient elements use child GradientEntry elements the same way LinearGradient elements do.
- */
+
 
 package org.pixelami.fxg.elements.fills
 {
@@ -28,6 +19,17 @@ package org.pixelami.fxg.elements.fills
 	
 	import org.pixelami.fxg.utils.FXGUtil;
 
+	/**
+	 * RadialGradient
+	 * 
+	 * <p>The RadialGradient element fills a path or shape with a continuously smooth color transition between a list of colors along the radius of a circle.
+	 * <p>The circle used is the circle bounded by the box stretching from (-0.5, -0.5) to (0.5,0.5). Like LinearGradient, it is transformed by the matrix transform defined on the gradient.
+	 * <p>RadialGradient supports all the same transform attributes and child elements that LinearGradient does. Additionally, because its rendering is defined by a box and not just a horizontal vector, it supports a scaleY attribute that is used along with scaleX to scale the bounding box before the other transform attributes are applied.
+	 * <p>RadialGradient elements also define the attribute focalPointRatio. This defines where along the horizontal axis (of the untransformed box) the focal point of the radial gradient lies. A value of 1 places it at the right hand edge of the box (at 0.5,0). A value of -1 places it at the left hand edge of the box (at -0.5,0).
+	 * 
+	 * <p>RadialGradient elements use child GradientEntry elements the same way LinearGradient elements do.
+	 */
+	
 	public class RadialGradient extends FXGFill
 	{
 		private var _entries:Array;
@@ -256,40 +258,12 @@ package org.pixelami.fxg.elements.fills
 			matrix.createGradientBox(sx,sy,radians,tx,ty);
 			
 		}
-		/*
-		protected function prepare():void
-		{
-			colors = [];
-			alphas = [];
-			ratios = [];
-			
-			var count:uint = 0;
-			for each(var ge:GradientEntry in entries)
-			{
-				colors.push(ge.color);
-				alphas.push(ge.alpha);
-				var rat:Number = (ge.ratio == NaN) ? count * (1/(entries.length - 1)) : ge.ratio;
-				// flash internal ratios are between 0-255
-				var rtio:uint = rat * 255;
-				ratios.push(rtio);
-			}
-			
-			//trace("colors: "+colors);
-			//trace("alphas: "+alphas);
-			//trace("ratios: "+ratios);
-			
-			matrix = new Matrix();
-		}
-		*/
+		
 		
 		override public function beginFill(value:Graphics):void
 		{
-			//trace("LinearGradient beginFill");
-			//trace("colors: "+colors);
-			//trace("alphas: "+alphas);
-			//trace("ratios: "+ratios);
-			//trace("matrix: "+matrix);
-			value.beginGradientFill(GradientType.RADIAL,colors,alphas,ratios,matrix);//,spreadMethod,interpolationMethod,focalPointRatio);
+			prepare();
+			value.beginGradientFill(GradientType.RADIAL,colors,alphas,ratios,matrix,spreadMethod,interpolationMethod,focalPointRatio);
 			
 			
 		}
