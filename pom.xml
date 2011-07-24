@@ -38,6 +38,36 @@
             <type>pom</type>
           </dependency>
         </dependencies>
+		<configuration>
+	  	  <namespaces>
+		    <namespace>
+			  <uri>http://www.pixelami.org/2011/pxg</uri>
+			  <manifest>${project.build.directory}/px-manifest.xml</manifest>
+			</namespace>
+		  </namespaces>
+		  <includeNamespaces>
+		        <namespace>http://www.pixelami.org/2011/pxg</namespace>
+		    </includeNamespaces>
+	    </configuration>
+		<executions>
+          <execution>
+            <goals>
+              <goal>manifest</goal>
+            </goals>
+            <configuration>
+              <manifestIncludes>
+                <include>org/pixelami/fxg/elements/**/*</include>
+              </manifestIncludes>
+              <manifestExcludes>
+                <exclude>org/pixelami/fxg/utils/**/*</exclude>
+				<exclude>org/pixelami/fxg/elements/**/I*</exclude>
+				<exclude>org/pixelami/fxg/elements/**/FXG*</exclude>
+				<exclude>org/pixelami/fxg/elements/fxg_internal.as</exclude>
+              </manifestExcludes>
+			  <outputFile>${project.build.directory}/px-manifest.xml</outputFile>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
