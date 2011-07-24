@@ -12,26 +12,27 @@ Rect - implemented
 			
 // Fills
 LinearGradient - implemented
-*RadialGradient - not implemented
-*BitmapFill - not implemented
+*RadialGradient - implemented (untested)
+*BitmapFill - implemented (untested)
 SolidColor - implemented
 			
 			
 // Strokes
 SolidColorStroke - implemented
-*LinearGradientStroke - not implemented
-*RadialGradientStroke - not implemented
+*LinearGradientStroke - implemented (untested)
+*RadialGradientStroke - implemented (untested)
 			
 // Filters
 DropShadowFilter - implemented
-*BlurFilter - not implemented
-*BevelFilter - not implemented
-*ColorMatrixFilter - not implemented
-*GradientBevelFilter - not implemented
-*GradientGlowFilter - not implemented
+*BlurFilter - implemented (untested)
+*BevelFilter - implemented (untested)
+*ColorMatrixFilter - implemented (untested)
+*GradientBevelFilter - implemented (untested)
+*GradientGlowFilter - implemented (untested)
 			
 // Text
-TextGraphic - implemented
+TextGraphic - implemented 
+(paragraph,span,br not implemented)
 			
 //Bitmap
 BitmapGraphic - implemented
