@@ -29,10 +29,19 @@ package org.pixelami.fxg.utils
 		static public function mapProperties(xml:XML,object:Object):Object
 		{
 			var properties:XMLList = xml.attributes();
+			var ns:* = xml.namespace();
+			
 			for each(var property:XML in properties)
 			{
-				var name:String = property.name();
+				var qname :QName = property.name();
 				var value:* = property.valueOf();
+				var name:String;
+				if(ns && qname.uri == Namespace(ns).uri)
+				{
+					continue;
+				}
+				
+				name = qname.localName;
 				
 				if(value)
 				{
@@ -41,10 +50,15 @@ package org.pixelami.fxg.utils
 					{
 						value = colorHexStringToInt(property.valueOf());
 					}
-				}	
+				}
 				
 				trace(name , value);
-				object[name] = value;
+				if(object.hasOwnProperty(name))
+				{
+					object[name] = value;
+				}
+					
+				
 			}
 			return object;
 		}
