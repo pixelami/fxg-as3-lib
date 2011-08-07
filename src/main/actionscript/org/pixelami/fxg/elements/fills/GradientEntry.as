@@ -11,7 +11,9 @@
 
 package org.pixelami.fxg.elements.fills
 {
-	public class GradientEntry
+	import org.pixelami.fxg.elements.IFXGElement;
+
+	public class GradientEntry implements IFXGElement
 	{
 		private var _color:uint;
 		

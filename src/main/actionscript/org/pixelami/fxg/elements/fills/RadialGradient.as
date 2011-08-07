@@ -30,9 +30,12 @@ package org.pixelami.fxg.elements.fills
 	 * <p>RadialGradient elements use child GradientEntry elements the same way LinearGradient elements do.
 	 */
 	
-	public class RadialGradient extends FXGFill
+	[DefaultProperty("entries")]
+	public class RadialGradient extends FXGFill implements IFXGGradientFill
 	{
-		private var _entries:Array;
+		public static const GRADIENT_DIMENSION:Number = 1638.4;
+		
+		private var _entries:Vector.<GradientEntry> = new Vector.<GradientEntry>();
 		private var _matrix:Matrix;
 		
 		private var _x:Number;
@@ -49,12 +52,12 @@ package org.pixelami.fxg.elements.fills
 		private var _ratios:Array;
 		
 		
-		public function set entries(value:Array):void
+		public function set entries(value:Vector.<GradientEntry>):void
 		{
 			_entries = value;
 		}
 		
-		public function get entries():Array
+		public function get entries():Vector.<GradientEntry>
 		{
 			return _entries;
 		}
@@ -218,16 +221,13 @@ package org.pixelami.fxg.elements.fills
 			alphas = [];
 			ratios = [];
 			
-			//var count:uint = 0;
-			for each(var el:XML in entries)
+			for each(var entry:GradientEntry in entries)
 			{
-				var col:uint = FXGUtil.colorHexStringToInt(el.@color);
+				var col:uint = entry.color;
 				colors.push(col);
-				//trace("el.@alpha: "+el.@alpha);
-				var alph:Number =  FXGUtil.getAlpha(el.@alpha,1) ;
+				var alph:Number =  entry.alpha;
 				alphas.push(alph);
-				//var defaultRatio:Number = 
-				var rat:Number = FXGUtil.getNumber(el.@ratio, ratios.length * (1/(entries.length() - 1)));
+				var rat:Number = isNaN(entry.ratio) ? ratios.length * (1/(entries.length - 1)) : entry.ratio;
 				var rtio:uint = rat * 255;
 				ratios.push(rtio);
 			}
@@ -237,7 +237,7 @@ package org.pixelami.fxg.elements.fills
 			trace("ratios: "+ratios);
 			
 			matrix = new Matrix();
-			var rot:Number = FXGUtil.getNumber(element.@rotation);
+			var rot:Number = rotation;
 			// check if angle is greater than 180 - if it is then subtract 360 - matrix for gradient fill only seems to take values between
 			// PI and -PI
 			trace ("rot pre: "+rot);
@@ -245,17 +245,19 @@ package org.pixelami.fxg.elements.fills
 			trace ("rot: "+rot);
 			var radians:Number = (rot) * (Math.PI/180);
 			trace("rads: "+radians);
-			//matrix.rotate(radians);
-			
+
 			var tx:Number = _x;
 			var ty:Number = _y;
-			var sx:Number = _scaleX;
-			var sy:Number = _scaleY;
+			var sx:Number = _scaleX / GRADIENT_DIMENSION;
+			var sy:Number = _scaleY / GRADIENT_DIMENSION;
+
+			//matrix.createGradientBox(sx,sy,radians,tx,ty);
+			matrix.tx = tx;
+			matrix.ty = ty;
 			
-			//matrix.translate(dx,dy);
-			//matrix.scale(sx,sy);
-			
-			matrix.createGradientBox(sx,sy,radians,tx,ty);
+			matrix.scale(sx,sy);
+			matrix.rotate(radians);
+			matrix.translate(tx,ty);
 			
 		}
 		
@@ -263,7 +265,8 @@ package org.pixelami.fxg.elements.fills
 		override public function beginFill(value:Graphics):void
 		{
 			prepare();
-			value.beginGradientFill(GradientType.RADIAL,colors,alphas,ratios,matrix,spreadMethod,interpolationMethod,focalPointRatio);
+			//matrix = null;
+			value.beginGradientFill(GradientType.RADIAL, colors, alphas, ratios, matrix, spreadMethod, interpolationMethod, focalPointRatio);
 			
 			
 		}

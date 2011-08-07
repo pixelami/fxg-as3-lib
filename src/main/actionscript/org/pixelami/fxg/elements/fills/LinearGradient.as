@@ -18,11 +18,11 @@ package org.pixelami.fxg.elements.fills
 	import flash.geom.Rectangle;
 	
 	[DefaultProperty("entries")]
-	public class LinearGradient extends FXGFill 
+	public class LinearGradient extends FXGFill implements IFXGGradientFill
 	{
 		public static const GRADIENT_DIMENSION:Number = 1638.4;
 		
-		private var _entries:Vector.<GradientEntry>;
+		private var _entries:Vector.<GradientEntry> = new Vector.<GradientEntry>();
 		
 		private var _matrix:Matrix;
 		private var _spreadMethod:String = "pad";
