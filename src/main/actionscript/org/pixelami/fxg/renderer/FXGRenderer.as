@@ -9,13 +9,12 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package org.pixelami.fxg.utils
+package org.pixelami.fxg.renderer
 {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
 	
-	import org.pixelami.fxg.utils.FXGRenderer;
 	import org.pixelami.fxg.elements.BitmapGraphic;
 	import org.pixelami.fxg.elements.Ellipse;
 	import org.pixelami.fxg.elements.FXGElement;
@@ -32,13 +31,26 @@ package org.pixelami.fxg.utils
 	import org.pixelami.fxg.elements.Path;
 	import org.pixelami.fxg.elements.Rect;
 	import org.pixelami.fxg.elements.TextGraphic;
+	import org.pixelami.fxg.elements.fills.BitmapFill;
+	import org.pixelami.fxg.elements.fills.GradientEntry;
 	import org.pixelami.fxg.elements.fills.IFXGFill;
+	import org.pixelami.fxg.elements.fills.IFXGGradientFill;
 	import org.pixelami.fxg.elements.fills.LinearGradient;
+	import org.pixelami.fxg.elements.fills.RadialGradient;
 	import org.pixelami.fxg.elements.fills.SolidColor;
+	import org.pixelami.fxg.elements.filters.BevelFilter;
+	import org.pixelami.fxg.elements.filters.BlurFilter;
+	import org.pixelami.fxg.elements.filters.ColorMatrixFilter;
 	import org.pixelami.fxg.elements.filters.DropShadowFilter;
+	import org.pixelami.fxg.elements.filters.GradientBevelFilter;
+	import org.pixelami.fxg.elements.filters.GradientGlowFilter;
 	import org.pixelami.fxg.elements.filters.IFXGFilter;
 	import org.pixelami.fxg.elements.strokes.IFXGStroke;
+	import org.pixelami.fxg.elements.strokes.LinearGradientStroke;
+	import org.pixelami.fxg.elements.strokes.RadialGradientStroke;
 	import org.pixelami.fxg.elements.strokes.SolidColorStroke;
+	import org.pixelami.fxg.renderer.FXGRenderer;
+	import org.pixelami.fxg.utils.SchemaTypeRegistry;
 	import org.pixelami.fxg.utils.XMLPropertyUtil;
 
 	public class FXGRenderer
@@ -81,33 +93,36 @@ package org.pixelami.fxg.utils
 			
 			// Fills
 			SchemaTypeRegistry.getInstance().registerClass(new QName(ns,"LinearGradient"),LinearGradient);
-			//SchemaTypeRegistry.getInstance().registerClass(new QName(ns,"RadialGradient"),RadialGradient);
-			//SchemaTypeRegistry.getInstance().registerClass(new QName(ns,"BitmapFill"),BitmapFill);
+			SchemaTypeRegistry.getInstance().registerClass(new QName(ns,"RadialGradient"),RadialGradient);
+			SchemaTypeRegistry.getInstance().registerClass(new QName(ns,"BitmapFill"),BitmapFill);
 			SchemaTypeRegistry.getInstance().registerClass(new QName(ns,"SolidColor"),SolidColor);
 			
 			
 			// Strokes
 			SchemaTypeRegistry.getInstance().registerClass(new QName(ns,"SolidColorStroke"),SolidColorStroke);
-			//SchemaTypeRegistry.getInstance().registerClass(new QName('http://ns.adobe.com/fxg/2008',"LinearGradientStroke"),LinearGradientStroke);
-			//SchemaTypeRegistry.getInstance().registerClass(new QName('http://ns.adobe.com/fxg/2008',"RadialGradientStroke"),RadialGradientStroke);
+			SchemaTypeRegistry.getInstance().registerClass(new QName(ns,"LinearGradientStroke"),LinearGradientStroke);
+			SchemaTypeRegistry.getInstance().registerClass(new QName(ns,"RadialGradientStroke"),RadialGradientStroke);
 			
 			// Filters
 			SchemaTypeRegistry.getInstance().registerClass(new QName(ns,"DropShadowFilter"),DropShadowFilter);
-			//SchemaTypeRegistry.getInstance().registerClass(new QName('http://ns.adobe.com/fxg/2008',"BlurFilter"),FXGBlurFilter);
-			//SchemaTypeRegistry.getInstance().registerClass(new QName('http://ns.adobe.com/fxg/2008',"BevelFilter"),FXGBevelFilter);
-			//SchemaTypeRegistry.getInstance().registerClass(new QName('http://ns.adobe.com/fxg/2008',"ColorMatrixFilter"),FXGColorMatrixFilter);
-			//SchemaTypeRegistry.getInstance().registerClass(new QName('http://ns.adobe.com/fxg/2008',"GradientBevelFilter"),FXGGradientBevelFilter);
-			//SchemaTypeRegistry.getInstance().registerClass(new QName('http://ns.adobe.com/fxg/2008',"GradientGlowFilter"),FXGGradientGlowFilter);
+			SchemaTypeRegistry.getInstance().registerClass(new QName(ns,"BlurFilter"),BlurFilter);
+			SchemaTypeRegistry.getInstance().registerClass(new QName(ns,"BevelFilter"),BevelFilter);
+			SchemaTypeRegistry.getInstance().registerClass(new QName(ns,"ColorMatrixFilter"),ColorMatrixFilter);
+			SchemaTypeRegistry.getInstance().registerClass(new QName(ns,"GradientBevelFilter"),GradientBevelFilter);
+			SchemaTypeRegistry.getInstance().registerClass(new QName(ns,"GradientGlowFilter"),GradientGlowFilter);
 			
 			// Text
 			SchemaTypeRegistry.getInstance().registerClass(new QName(ns,"TextGraphic"),TextGraphic);
 			
-			//Bitmap
+			// Bitmap
 			SchemaTypeRegistry.getInstance().registerClass(new QName(ns,"BitmapGraphic"),BitmapGraphic);
+			
+			// GradientEntry
+			SchemaTypeRegistry.getInstance().registerClass(new QName(ns,"GradientEntry"),GradientEntry);
 		}
 		
 		
-		public function renderElement(element:XML,parent:Sprite=null):void
+		public function renderElement(element:XML,parent:*=null):void
 		{
 			// TODO
 			// clear any previous contents of parent
@@ -141,7 +156,7 @@ package org.pixelami.fxg.utils
 				
 				//&& parent is DisplayObjectContainer
 				// are we a displayElement - i.e do we need to be added to a parent displayObject ?
-				if(elementInstance is IFXGDisplayElement)
+				if(elementInstance is IFXGDisplayElement && parent is Sprite)
 				{
 					trace("adding child");
 					parent.addChild(elementInstance as DisplayObject);
@@ -163,6 +178,13 @@ package org.pixelami.fxg.utils
 					var filters:Array = IFXGFilterable(parent).filters.slice();
 					filters.push(elementInstance as IFXGFilter);
 					IFXGFilterable(parent).filters = filters;
+				}
+				
+				if(elementInstance is GradientEntry && parent is IFXGGradientFill)
+				{
+					var entries:Vector.<GradientEntry> = IFXGGradientFill(parent).entries.slice();
+					entries.push(elementInstance as GradientEntry);
+					IFXGGradientFill(parent).entries = entries;
 				}
 				
 				// cludgey implementation of setting a <content> value to a component implementing IContentContainerElement (TextGraphic)
@@ -191,7 +213,7 @@ package org.pixelami.fxg.utils
 				for each(var e:XML in element.children())
 				{
 					//trace( e.toXMLString());
-					renderElement(e,elementInstance as Sprite);
+					renderElement(e,elementInstance);
 				}
 			}
 		}
