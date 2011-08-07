@@ -1,6 +1,8 @@
-package org.pixelami.fxg
+package org.pixelami.fxg.utils
 {
-	public class FXGUtilTests
+	import flashx.textLayout.debug.assert;
+
+	public class FXGUtilTest
 	{		
 		[Before]
 		public function setUp():void
@@ -22,6 +24,10 @@ package org.pixelami.fxg
 		{
 		}
 		
-		
+		[Test]
+		public function testSomething():void
+		{
+			assert();
+		}
 	}
 }
