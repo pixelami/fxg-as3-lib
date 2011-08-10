@@ -13,6 +13,7 @@ package org.pixelami.fxg.elements
 {
 	import flash.display.Graphics;
 	import flash.display.Shape;
+	import flash.geom.Rectangle;
 	
 	public class Rect extends FXGShapeElement
 	{
@@ -59,7 +60,7 @@ package org.pixelami.fxg.elements
 			if(fill)
 			{
 				
-				fill.beginFill(g);
+				fill.beginFill(g, new Rectangle(0,0,width,height));
 				
 				if(!radiusX) radiusX = 0;
 				if(!radiusY) radiusY = 0;
@@ -67,12 +68,12 @@ package org.pixelami.fxg.elements
 				
 				if((radiusX==0) && (radiusY==0))
 				{
-					fillShape.graphics.drawRect(0,0,width,height);
+					g.drawRect(0,0,width,height);
 				}
 				else
 				{
 					
-					fillShape.graphics.drawRoundRect(0,0,width,height,radiusX,radiusY);
+					g.drawRoundRect(0,0,width,height,radiusX,radiusY);
 				}
 				
 				fill.endFill(g);
@@ -82,17 +83,18 @@ package org.pixelami.fxg.elements
 		
 		override protected function renderStroke() : void
 		{
+			var g:Graphics = strokeShape.graphics;
 			if(stroke)
 			{
 				stroke.doStroke(strokeShape.graphics);
 				
 				if(radiusX == 0 && radiusY == 0)
 				{
-					strokeShape.graphics.drawRect(0,0,width,height);
+					g.drawRect(0,0,width,height);
 				}
 				else
 				{
-					strokeShape.graphics.drawRoundRect(0,0,width,height,radiusX,radiusY);
+					g.drawRoundRect(0,0,width,height,radiusX,radiusY);
 				}
 			}
 		}

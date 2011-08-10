@@ -13,6 +13,8 @@ package org.pixelami.fxg.elements.fills
 {
 	import flash.display.GradientType;
 	import flash.display.Graphics;
+	import flash.display.InterpolationMethod;
+	import flash.display.SpreadMethod;
 	import flash.geom.Matrix;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
@@ -25,12 +27,12 @@ package org.pixelami.fxg.elements.fills
 		private var _entries:Vector.<GradientEntry> = new Vector.<GradientEntry>();
 		
 		private var _matrix:Matrix;
-		private var _spreadMethod:String = "pad";
-		private var _interpolationMethod:String = "rgb";
-		private var _rotation:Number;
-		private var _scaleX:Number = 0;
-		private var _x:Number = 0;
-		private var _y:Number = 0;
+		private var _spreadMethod:String = SpreadMethod.PAD;
+		private var _interpolationMethod:String = InterpolationMethod.RGB;
+		private var _rotation:Number = 0.0;
+		private var _scaleX:Number;
+		private var _x:Number;
+		private var _y:Number;
 		
 		protected var colors:Array;
 		protected var alphas:Array;
@@ -170,6 +172,11 @@ package org.pixelami.fxg.elements.fills
 			matrix = new Matrix();
 		}
 		
+		internal function get rotationInRadians():Number
+		{
+			return rotation / 180 * Math.PI;
+		}
+		
 		////////////////////////////////////////////////////////////////////////////////
 		//
 		//  ADOBE SYSTEMS INCORPORATED
@@ -183,25 +190,13 @@ package org.pixelami.fxg.elements.fills
 		
 		public function createMatrix(bounds:Rectangle):void
 		{
-			var commonMatrix:Matrix = new Matrix();
-			commonMatrix.identity();
+
+			matrix = new Matrix();
+			matrix.identity();
+
 			
-			var rot:Number = rotation;
-			// check if angle is greater than 180 - if it is then subtract 360 - matrix for gradient fill only seems to take values between
-			// PI and -PI
-			if(rot > 180) rot =  rot - 360;
-			var radians:Number = (rot * Math.PI/180);
-			
-			
-			var _angle:Number = _angle = radians;
-			var targetBounds:Rectangle = bounds;
-			var rotation:Number = rot;
-			var rotationInRadians:Number = rotation / 180 * Math.PI;
-			//var radians:Number = rot;
-			
-			
-			var tx:Number = x;
-			var ty:Number = y;
+			var tx:Number = x;//!isNaN(x) ? x : bounds.width;
+			var ty:Number = y;//!isNaN(y) ? y : bounds.height;
 			var sx:Number = scaleX;
 			var sy:Number;
 			
@@ -227,18 +222,18 @@ package org.pixelami.fxg.elements.fills
 					if (normalizedAngle > 90)
 						normalizedAngle = 180 - normalizedAngle;
 					
-					var side:Number = targetBounds.width;
+					var side:Number = bounds.width;
 					// Get the hypotenuse of the largest triangle that can fit in the bounds
-					var hypotenuse:Number = Math.sqrt(targetBounds.width * targetBounds.width + targetBounds.height * targetBounds.height);
+					var hypotenuse:Number = Math.sqrt(bounds.width * bounds.width + bounds.height * bounds.height);
 					// Get the angle of that largest triangle
-					var hypotenuseAngle:Number =  Math.acos(targetBounds.width / hypotenuse) * 180 / Math.PI;
+					var hypotenuseAngle:Number =  Math.acos(bounds.width / hypotenuse) * 180 / Math.PI;
 					
 					// If the angle is larger than the hypotenuse angle, then use the height 
 					// as the adjacent side of the triangle
 					if (normalizedAngle > hypotenuseAngle)
 					{
 						normalizedAngle = 90 - normalizedAngle;
-						side = targetBounds.height;
+						side = bounds.height;
 					}
 					
 					// Solve for the hypotenuse given an adjacent side and an angle. 
@@ -247,7 +242,7 @@ package org.pixelami.fxg.elements.fills
 				else 
 				{
 					// Use either width or height based on the rotation
-					length = (rotation % 180) == 0 ? targetBounds.width : targetBounds.height;
+					length = (rotation % 180) == 0 ? bounds.width : bounds.height;
 				}
 			}
 			
@@ -260,7 +255,7 @@ package org.pixelami.fxg.elements.fills
 			// If x and y are specified, then move the gradient so that the
 			// top left corner is at 0,0
 			if (!isNaN(tx) && !isNaN(ty))
-				commonMatrix.translate(GRADIENT_DIMENSION / 2, GRADIENT_DIMENSION / 2); // 1638.4 / 2
+				matrix.translate(GRADIENT_DIMENSION / 2, GRADIENT_DIMENSION / 2); // 1638.4 / 2
 			
 			// Force the length to a absolute minimum of 2. Values of 0, 1, or -1 have undesired behavior	
 			if (length >= 0 && length < 2)
@@ -270,42 +265,30 @@ package org.pixelami.fxg.elements.fills
 			
 			// Scale the gradient in the x direction. The natural size is 1638.4px. No need
 			// to scale the y direction because it is infinite
-			commonMatrix.scale (length / GRADIENT_DIMENSION, 1 / GRADIENT_DIMENSION);
+			matrix.scale (length / GRADIENT_DIMENSION, 1 / GRADIENT_DIMENSION);
 			
-			commonMatrix.rotate (!isNaN(_angle) ? _angle : rotationInRadians);
+			matrix.rotate (rotationInRadians);
 			
-			commonMatrix.translate(tx, ty);	
-			
-			if(sy == 0)
-			{
-				// work out the bounds of gradient
-				var p0:Point = new Point(tx,ty);
-				var p1:Point = Point.polar(sx,radians);
-			
-				var p2:Point = p1.add(p0);
-				
-				var grect:Rectangle = new Rectangle(p2.x,p2.y,Math.abs(p1.x),Math.abs(p1.y));
-				grect = grect.union(bounds);
-				
-				
-				// top postion of gradient
-				tx = p0.x + p1.x;
-				ty = p0.y + p1.y;
-				
-				element.@scaleY = sy = bounds.height;
-				matrix.createGradientBox(sx,sx,radians,grect.left,p2.y);
-
-			}
+			if (isNaN(tx))
+				tx = bounds.left + bounds.width / 2;
 			else
-			{
-				matrix.createGradientBox(sx,sy,radians,tx,ty);
-			}
-
+				tx += 0;//targetOrigin.x;
+			if (isNaN(ty))
+				ty = bounds.top + bounds.height / 2;
+			else
+				ty += 0;//targetOrigin.y;
+			
+			matrix.translate(tx, ty);	
 		}
 
 		
-		override public function beginFill(value:Graphics):void
+		override public function beginFill(value:Graphics, bounds:Rectangle):void
 		{
+			prepare();
+			createMatrix(bounds);
+			trace("colors: "+colors);
+			trace("alphas: "+alphas);
+			trace("ratios: "+ratios);
 			value.beginGradientFill(GradientType.LINEAR,colors,alphas,ratios,matrix,spreadMethod,interpolationMethod,focalPointRatio);
 		}
 

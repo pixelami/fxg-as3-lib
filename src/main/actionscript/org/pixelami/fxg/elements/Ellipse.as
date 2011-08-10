@@ -12,6 +12,7 @@
 package org.pixelami.fxg.elements
 {
 	import flash.display.Graphics;
+	import flash.geom.Rectangle;
 	
 	public class Ellipse extends FXGShapeElement
 	{
@@ -26,7 +27,7 @@ package org.pixelami.fxg.elements
 			
 			if(fill)
 			{
-				fill.beginFill(g);
+				fill.beginFill(g, new Rectangle(0,0,width,height));
 				g.drawEllipse(0,0,width,height);
 				fill.endFill(g);
 			}

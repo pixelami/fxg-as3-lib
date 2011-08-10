@@ -12,6 +12,7 @@
 package org.pixelami.fxg.elements.fills
 {
 	import flash.display.Graphics;
+	import flash.geom.Rectangle;
 
 	public class SolidColor extends FXGFill
 	{
@@ -20,7 +21,7 @@ package org.pixelami.fxg.elements.fills
 		{
 		}
 		
-		override public function beginFill(value:Graphics):void
+		override public function beginFill(value:Graphics, bounds:Rectangle):void
 		{
 			value.beginFill(color,alpha);
 		}

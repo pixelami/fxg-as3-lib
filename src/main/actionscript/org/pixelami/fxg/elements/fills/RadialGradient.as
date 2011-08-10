@@ -16,6 +16,7 @@ package org.pixelami.fxg.elements.fills
 	import flash.display.GradientType;
 	import flash.display.Graphics;
 	import flash.geom.Matrix;
+	import flash.geom.Rectangle;
 	
 	import org.pixelami.fxg.utils.FXGUtil;
 
@@ -42,7 +43,7 @@ package org.pixelami.fxg.elements.fills
 		private var _y:Number;
 		private var _scaleX:Number;
 		private var _scaleY:Number;
-		private var _rotation:Number;
+		private var _rotation:Number = 0;
 		private var _spreadMethod:String = "pad";
 		private var _interpolationMethod:String = "rgb";
 		private var _focalPointRatio:Number = 0;
@@ -214,7 +215,7 @@ package org.pixelami.fxg.elements.fills
 			super();
 		}
 		
-		protected function prepare():void
+		protected function prepare(target:Object):void
 		{
 			
 			colors = [];
@@ -232,17 +233,11 @@ package org.pixelami.fxg.elements.fills
 				ratios.push(rtio);
 			}
 			
-			trace("colors: "+colors);
-			trace("alphas: "+alphas);
-			trace("ratios: "+ratios);
-			
 			matrix = new Matrix();
 			var rot:Number = rotation;
 			// check if angle is greater than 180 - if it is then subtract 360 - matrix for gradient fill only seems to take values between
 			// PI and -PI
-			trace ("rot pre: "+rot);
 			if(rot > 180) rot = rot - 360;
-			trace ("rot: "+rot);
 			var radians:Number = (rot) * (Math.PI/180);
 			trace("rads: "+radians);
 
@@ -250,10 +245,6 @@ package org.pixelami.fxg.elements.fills
 			var ty:Number = _y;
 			var sx:Number = _scaleX / GRADIENT_DIMENSION;
 			var sy:Number = _scaleY / GRADIENT_DIMENSION;
-
-			//matrix.createGradientBox(sx,sy,radians,tx,ty);
-			matrix.tx = tx;
-			matrix.ty = ty;
 			
 			matrix.scale(sx,sy);
 			matrix.rotate(radians);
@@ -262,11 +253,13 @@ package org.pixelami.fxg.elements.fills
 		}
 		
 		
-		override public function beginFill(value:Graphics):void
+		override public function beginFill(target:Graphics, bounds:Rectangle):void
 		{
-			prepare();
-			//matrix = null;
-			value.beginGradientFill(GradientType.RADIAL, colors, alphas, ratios, matrix, spreadMethod, interpolationMethod, focalPointRatio);
+			prepare(target);
+			trace("colors: "+colors);
+			trace("alphas: "+alphas);
+			trace("ratios: "+ratios);
+			target.beginGradientFill(GradientType.RADIAL, colors, alphas, ratios, matrix, spreadMethod, interpolationMethod, focalPointRatio);
 			
 			
 		}

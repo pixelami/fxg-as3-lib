@@ -12,13 +12,14 @@
 package org.pixelami.fxg.elements.fills
 {
 	import flash.display.Graphics;
+	import flash.geom.Rectangle;
 	
 	import org.pixelami.fxg.elements.IFXGElement;
 	import org.pixelami.fxg.elements.strokes.IFXGStroke;
 
 	public interface IFXGFill extends IFXGElement
 	{
-		function beginFill(value:Graphics):void;
+		function beginFill(value:Graphics,bounds:Rectangle):void;
 		function endFill(value:Graphics):void;
 	}
 }

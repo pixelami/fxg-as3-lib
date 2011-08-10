@@ -13,9 +13,10 @@ package org.pixelami.fxg.elements
 {
 	import flash.display.Graphics;
 	import flash.display.GraphicsPath;
+	import flash.geom.Rectangle;
 	
-	import org.pixelami.fxg.utils.PathSegmentsCollection;
 	import org.pixelami.fxg.elements.fills.LinearGradient;
+	import org.pixelami.fxg.utils.PathSegmentsCollection;
 	
 	
 	public class Path extends FXGShapeElement
@@ -53,9 +54,10 @@ package org.pixelami.fxg.elements
 			
 			if(fill)
 			{
+				var bounds:Rectangle = new Rectangle(x,y,width,height);
 				getPathCommands();
 				
-				fill.beginFill(g);
+				fill.beginFill(g, bounds);
 				fillShape.graphics.drawPath(graphicsPath.commands,graphicsPath.data);
 				if(!drawn) 
 				{
@@ -70,7 +72,7 @@ package org.pixelami.fxg.elements
 				if((fill is LinearGradient))
 				{
 					LinearGradient(fill).createMatrix(fillShape.getBounds(this));
-					fill.beginFill(g);
+					fill.beginFill(g, bounds);
 					g.drawPath(graphicsPath.commands,graphicsPath.data);
 					fill.endFill(g);
 				}
