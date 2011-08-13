@@ -21,6 +21,9 @@ package org.pixelami.fxg.elements.fills
 		private var _alpha:Number = 1;
 		private var _color:uint = 0x000000;
 		
+		internal var targetGraphics:Graphics;
+		internal var targetBounds:Rectangle;
+		
 		public function FXGFill()
 		{
 		}
@@ -52,7 +55,7 @@ package org.pixelami.fxg.elements.fills
 		}
 		
 		
-		public function beginFill(value:Graphics,bounds:Rectangle):void
+		public function beginFill(target:Graphics,bounds:Rectangle):void
 		{
 			
 		}

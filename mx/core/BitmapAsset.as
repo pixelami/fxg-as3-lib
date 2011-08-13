@@ -9,17 +9,16 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package org.pixelami.fxg.elements.fills
+package mx.core
 {
-	import flash.display.Graphics;
-	import flash.geom.Rectangle;
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
 	
-	import org.pixelami.fxg.elements.IFXGElement;
-	import org.pixelami.fxg.elements.strokes.IFXGStroke;
-
-	public interface IFXGFill extends IFXGElement
+	public class BitmapAsset extends Bitmap
 	{
-		function beginFill(target:Graphics,bounds:Rectangle):void;
-		function endFill(value:Graphics):void;
+		public function BitmapAsset(bitmapData:BitmapData=null, pixelSnapping:String="auto", smoothing:Boolean=false)
+		{
+			super(bitmapData, pixelSnapping, smoothing);
+		}
 	}
 }

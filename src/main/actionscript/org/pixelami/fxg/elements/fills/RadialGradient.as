@@ -19,6 +19,7 @@ package org.pixelami.fxg.elements.fills
 	import flash.geom.Rectangle;
 	
 	import org.pixelami.fxg.utils.FXGUtil;
+	import org.pixelami.fxg.utils.FXGUtilTest;
 
 	/**
 	 * RadialGradient
@@ -33,11 +34,9 @@ package org.pixelami.fxg.elements.fills
 	
 	[DefaultProperty("entries")]
 	public class RadialGradient extends FXGFill implements IFXGGradientFill
-	{
-		public static const GRADIENT_DIMENSION:Number = 1638.4;
-		
+	{	
 		private var _entries:Vector.<GradientEntry> = new Vector.<GradientEntry>();
-		private var _matrix:Matrix;
+		internal var _matrix:Matrix = new Matrix;
 		
 		private var _x:Number;
 		private var _y:Number;
@@ -217,35 +216,20 @@ package org.pixelami.fxg.elements.fills
 		
 		protected function prepare(target:Object):void
 		{
+			var o:Object = FXGUtil.getColorsAlphasRatiosFromGradientEntries(entries);
+			colors = o.colors;
+			alphas = o.alphas;
+			ratios = o.ratios;
+
+			var radians:Number = FXGUtil.getRadiansNormalized(rotation);
 			
-			colors = [];
-			alphas = [];
-			ratios = [];
-			
-			for each(var entry:GradientEntry in entries)
-			{
-				var col:uint = entry.color;
-				colors.push(col);
-				var alph:Number =  entry.alpha;
-				alphas.push(alph);
-				var rat:Number = isNaN(entry.ratio) ? ratios.length * (1/(entries.length - 1)) : entry.ratio;
-				var rtio:uint = rat * 255;
-				ratios.push(rtio);
-			}
-			
-			matrix = new Matrix();
-			var rot:Number = rotation;
-			// check if angle is greater than 180 - if it is then subtract 360 - matrix for gradient fill only seems to take values between
-			// PI and -PI
-			if(rot > 180) rot = rot - 360;
-			var radians:Number = (rot) * (Math.PI/180);
-			trace("rads: "+radians);
 
 			var tx:Number = _x;
 			var ty:Number = _y;
-			var sx:Number = _scaleX / GRADIENT_DIMENSION;
-			var sy:Number = _scaleY / GRADIENT_DIMENSION;
+			var sx:Number = _scaleX / FXGFill.GRADIENT_DIMENSION;
+			var sy:Number = _scaleY / FXGFill.GRADIENT_DIMENSION;
 			
+			matrix.identity();
 			matrix.scale(sx,sy);
 			matrix.rotate(radians);
 			matrix.translate(tx,ty);
@@ -255,6 +239,8 @@ package org.pixelami.fxg.elements.fills
 		
 		override public function beginFill(target:Graphics, bounds:Rectangle):void
 		{
+			targetGraphics = target;
+			targetBounds = bounds;
 			prepare(target);
 			trace("colors: "+colors);
 			trace("alphas: "+alphas);

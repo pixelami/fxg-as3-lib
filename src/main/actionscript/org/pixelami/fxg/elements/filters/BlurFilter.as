@@ -11,6 +11,8 @@
 
 package org.pixelami.fxg.elements.filters
 {
+	import flash.filters.BlurFilter;
+
 	public class BlurFilter extends FXGFilter
 	{
 		private var _blurX:Number;
@@ -42,6 +44,11 @@ package org.pixelami.fxg.elements.filters
 		public function set blurY(value:Number):void
 		{
 			_blurY = value;
+		}
+		
+		override public function getFilter():*
+		{
+			return new flash.filters.BlurFilter(blurX,blurY,quality);
 		}
 	}
 }

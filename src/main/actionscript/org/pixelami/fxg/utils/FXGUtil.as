@@ -13,6 +13,7 @@ package org.pixelami.fxg.utils
 {
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
+	
 	import mx.utils.ObjectUtil;
 	
 	import org.pixelami.fxg.elements.fills.GradientEntry;
@@ -210,6 +211,12 @@ package org.pixelami.fxg.utils
 			}
 			
 			return o;
+		}
+		
+		public static function getRadiansNormalized(degrees:Number):Number
+		{
+			if(degrees > 180) degrees = degrees - 360;
+			return degrees * (Math.PI/180);
 		}
 		
 	}

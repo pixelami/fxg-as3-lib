@@ -36,16 +36,29 @@ package org.pixelami.fxg.elements
 		private var loader:Loader;
 		private var bitmap:Bitmap;
 		
-		private var sourceSet:Boolean = true;
+		//private var sourceChanged:Boolean = true;
 		private var bitmapReady:Boolean;
+		
+		private var requiresResize:Boolean;
 
-		public function set source(value:String):void
+		public function set source(value:*):void
 		{
-			if(_source != value)
+			if(value is String)
 			{
-				//_source = value;
-				_source = extractEmbedURL(value);
-				sourceSet = true;
+			
+				if(_source != value)
+				{
+					_source = extractEmbedURL(value);
+					//sourceChanged = true;
+					load();
+				}
+			}
+			else if(value is Object)
+			{
+				bitmap = new value();
+				bitmap.smoothing = true;
+				addChild(bitmap);
+				bitmapReady = true;
 				invalidateDisplayList();
 			}
 			
@@ -82,7 +95,13 @@ package org.pixelami.fxg.elements
 		
 		override public function set width(value:Number):void
 		{
-			_width = value;
+			if(_width != value)
+			{
+				_width = value;
+				requiresResize = true;
+				invalidateDisplayList();
+			}
+			
 		}
 		
 		/**
@@ -107,51 +126,57 @@ package org.pixelami.fxg.elements
 		
 		public function renderElement():void
 		{
-			if(sourceSet)
+			/*if(sourceChanged)
 			{
-				sourceSet = false;
-				if(!loader) loader = new Loader();
-				loader.contentLoaderInfo.addEventListener(Event.COMPLETE,onLoaderComplete);
-				loader.load(new URLRequest(source));
-			}
+				sourceChanged = false;
+			}*/
 			if(bitmapReady)
 			{
+				bitmapReady = false;
 				// bitmap loaded so do measure and layout
-				
-				var w:Number = width;
-				var h:Number = height;
-				
-				// how's this for idiosynchratic ?
-				w = w ? w : 0;
-				h = h ? h : 0;
-				
-				if(bitmap.height != h || bitmap.width != w)
+				if(isNaN(width) && isNaN(height))
 				{
-					var constraint:Object = LayoutUtils.constrain(bitmap,{width:w,height:h},true);
-					
-					bitmap.width = constraint.width;
-					bitmap.height = constraint.height;
-					
-					bitmap.smoothing = true;
+					//just use bitmap width
+					_width = bitmap.width;
+					_height = bitmap.height;
+				}
+				else if(bitmap.height != _height || bitmap.width != _width)
+				{
+					requiresResize = true;
 				}
 				
 			}
-			if(bitmap)
+			if(bitmap && requiresResize)
 			{
-				//trace("has bitmap");
+				requiresResize = false;
+				resize();
 			}
 		}
 		
+		protected function resize():void
+		{
+			var constraint:Object = LayoutUtils.constrain(bitmap,{width:_width,height:_height},true);
+			
+			bitmap.width = constraint.width;
+			bitmap.height = constraint.height;
+		}
+		
+		protected function load():void
+		{
+			if(!loader) loader = new Loader();
+			loader.contentLoaderInfo.addEventListener(Event.COMPLETE,onLoaderComplete);
+			loader.load(new URLRequest(source));
+		}
 		
 		private function onLoaderComplete(evt:Event):void
 		{
 			bitmap = evt.target.content;
+			bitmap.smoothing = true;
 			addChild(bitmap);
 			bitmapReady = true;
 			renderElement();
 		}
 		
-		// TODO move to utils class
 		protected function extractEmbedURL(source:String):String
 		{
 			return FXGUtil.extractEmbedURL(source);

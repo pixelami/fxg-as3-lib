@@ -12,13 +12,23 @@
 
 package org.pixelami.fxg.elements.fills
 {
+	import flash.display.Bitmap;
+	import flash.display.Graphics;
+	import flash.display.Loader;
+	import flash.events.Event;
+	import flash.geom.Matrix;
+	import flash.geom.Rectangle;
+	import flash.net.URLRequest;
+	
+	import org.pixelami.fxg.elements.BitmapGraphic;
+
 	/*
 	Children
 	
 	* matrix
 	*/
 	
-	public class BitmapFill extends FXGFill
+	public class BitmapFill extends FXGFill implements IFXGFill
 	{
 		private var _x:Number;
 		private var _y:Number;
@@ -29,6 +39,25 @@ package org.pixelami.fxg.elements.fills
 		private var _transformY:Number;
 		private var _source:String;
 		private var _repeat:Boolean;
+		
+		
+		private var loader:Loader;
+		private var bitmap:Bitmap;
+		private var smooth:Boolean = true;
+		
+		
+		private var pendingFill:Boolean;
+		
+		private var _matrix:Matrix = new Matrix();
+		public function get matrix():Matrix
+		{
+			return _matrix;
+		}
+		
+		public function set matrix(value:Matrix):void
+		{
+			_matrix = value;
+		}
 		
 		/**
 		 * The horizontal translation of the transform that defines the horizontal center of the gradient.
@@ -156,12 +185,49 @@ package org.pixelami.fxg.elements.fills
 		{
 			_repeat = value;
 		}
-
-		
 		
 		public function BitmapFill()
 		{
 			super();
+		}
+		
+		
+		override public function beginFill(target:Graphics, bounds:Rectangle):void
+		{
+			if(bitmap)
+			{
+				matrix.identity();
+				matrix.scale(scaleX,scaleY);
+				matrix.rotate(rotation * Math.PI / 180);
+				matrix.translate(transformX,transformY);
+				target.beginBitmapFill(bitmap.bitmapData,matrix,repeat,smooth);
+			}
+			else
+			{
+				targetGraphics = target;
+				targetBounds = bounds;
+				pendingFill = true;
+				load();
+			}
+		}
+		
+		protected function load():void
+		{
+			if(!loader) loader = new Loader();
+			loader.contentLoaderInfo.addEventListener(Event.COMPLETE,onLoaderComplete);
+			loader.load(new URLRequest(source));
+		}
+		
+		private function onLoaderComplete(evt:Event):void
+		{
+			bitmap = evt.target.content;
+			bitmap.smoothing = true;
+			
+			if(pendingFill)
+			{
+				pendingFill = false;
+				beginFill(targetGraphics,targetBounds);
+			}
 		}
 	}
 }
