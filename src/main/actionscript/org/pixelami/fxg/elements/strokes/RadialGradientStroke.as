@@ -15,6 +15,7 @@ package org.pixelami.fxg.elements.strokes
 	import flash.display.Graphics;
 	import flash.geom.Matrix;
 	
+	import org.pixelami.fxg.elements.fills.FXGFill;
 	import org.pixelami.fxg.elements.fills.GradientEntry;
 	import org.pixelami.fxg.utils.FXGUtil;
 
@@ -27,7 +28,7 @@ package org.pixelami.fxg.elements.strokes
 	 * <p>RadialGradient elements use child GradientEntry elements the same way LinearGradient elements do.
 	 */
 	[DefaultProperty("entries")]
-	public class RadialGradientStroke implements IFXGStroke
+	public class RadialGradientStroke extends FXGStroke
 	{
 		private var _x:Number;
 		private var _y:Number;
@@ -39,7 +40,7 @@ package org.pixelami.fxg.elements.strokes
 		private var _focalPointRatio:Number;
 		
 		private var _entries:Vector.<GradientEntry>;
-		private var matrix:Matrix;
+		private var matrix:Matrix = new Matrix();
 		
 		/**
 		 * The horizontal translation of the gradient transform that defines the horizontal center of the gradient.
@@ -160,9 +161,22 @@ package org.pixelami.fxg.elements.strokes
 		{
 		}
 		
-		public function doStroke(value:Graphics):void
+		override public function doStroke(value:Graphics):void
 		{
 			var o:Object = FXGUtil.getColorsAlphasRatiosFromGradientEntries(entries);
+			
+			var radians:Number = FXGUtil.getRadiansNormalized(rotation);
+			
+			
+			var tx:Number = _x;
+			var ty:Number = _y;
+			var sx:Number = _scaleX / FXGFill.GRADIENT_DIMENSION;
+			var sy:Number = _scaleY / FXGFill.GRADIENT_DIMENSION;
+			
+			matrix.identity();
+			matrix.scale(sx,sy);
+			matrix.rotate(radians);
+			matrix.translate(tx,ty);
 			value.lineGradientStyle(GradientType.RADIAL,o.colors,o.alphas,o.ratios,matrix,spreadMethod,interpolationMethod,focalPointRatio);
 		}
 	}

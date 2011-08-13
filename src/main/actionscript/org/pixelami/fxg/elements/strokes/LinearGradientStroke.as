@@ -25,7 +25,7 @@ package org.pixelami.fxg.elements.strokes
 	 * <p>The LinearGradientStroke operates almost identically to the LinearGradient fill type. As with the fill, By default, a LinearGradientStroke is transformed to fill the bounding box of the path being stroked. The bounding box is computed by computing the bounding box of the anchor points of the path, and expanding its borders outward in each direction by half the weight of the stroke.
 	 * <p>Otherwise its rendering behavior is identical to that of the LinearGradientFill.
 	 */
-	public class LinearGradientStroke  implements IFXGStroke
+	public class LinearGradientStroke  extends FXGStroke
 	{
 		private var _x:Number;
 		private var _y:Number;
@@ -145,32 +145,6 @@ package org.pixelami.fxg.elements.strokes
 		{
 			_caps = value;
 		}
-
-		/**
-		 * (bevel, miter, round): A value that specifies the type of joint appearance used at angles. Defaults to "round".
-		 */
-		public function get joints():String
-		{
-			return _joints;
-		}
-
-		public function set joints(value:String):void
-		{
-			_joints = value;
-		}
-
-		/**
-		 * A number that indicates the limit at which a miter is cut off. Valid values range from 0 to 255.
-		 */
-		public function get miterLimit():Number
-		{
-			return _miterLimit;
-		}
-
-		public function set miterLimit(value:Number):void
-		{
-			_miterLimit = value;
-		}
 		
 		
 		
@@ -189,7 +163,7 @@ package org.pixelami.fxg.elements.strokes
 			super();
 		}
 				
-		public function doStroke(value:Graphics):void
+		override public function doStroke(value:Graphics):void
 		{
 			var o:Object = FXGUtil.getColorsAlphasRatiosFromGradientEntries(entries);
 			var focalPointRatio:Number = 0;

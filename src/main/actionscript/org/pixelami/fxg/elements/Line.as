@@ -28,7 +28,8 @@ package org.pixelami.fxg.elements
 
 		public function set xFrom(value:Number):void
 		{
-			_xFrom = value;
+			x = _xFrom = value;
+			invalidateDisplayList();
 		}
 
 		/**
@@ -41,7 +42,8 @@ package org.pixelami.fxg.elements
 
 		public function set yFrom(value:Number):void
 		{
-			_yFrom = value;
+			y = _yFrom = value;
+			invalidateDisplayList();
 		}
 
 		/**
@@ -55,6 +57,7 @@ package org.pixelami.fxg.elements
 		public function set xTo(value:Number):void
 		{
 			_xTo = value;
+			invalidateDisplayList();
 		}
 
 		/**
@@ -68,6 +71,7 @@ package org.pixelami.fxg.elements
 		public function set yTo(value:Number):void
 		{
 			_yTo = value;
+			invalidateDisplayList();
 		}
 		
 		
@@ -83,6 +87,8 @@ package org.pixelami.fxg.elements
 		override protected function renderStroke():void
 		{
 			stroke.doStroke(strokeShape.graphics);
+			strokeShape.graphics.moveTo(0,0);
+			strokeShape.graphics.lineTo(_xTo - _xFrom,_yTo - _yFrom);
 		}
 	}
 }

@@ -14,6 +14,7 @@
     <component id="LinearGradient" class="org.pixelami.fxg.elements.fills.LinearGradient"/>
     <component id="RadialGradient" class="org.pixelami.fxg.elements.fills.RadialGradient"/>
     <component id="SolidColor" class="org.pixelami.fxg.elements.fills.SolidColor"/>
+	<component id="SolidColorStroke" class="org.pixelami.fxg.elements.strokes.SolidColorStroke"/>
     <component id="LinearGradientStroke" class="org.pixelami.fxg.elements.strokes.LinearGradientStroke"/>
     <component id="RadialGradientStroke" class="org.pixelami.fxg.elements.strokes.RadialGradientStroke"/>
     <component id="DropShadowFilter" class="org.pixelami.fxg.elements.filters.DropShadowFilter"/>

@@ -37,6 +37,8 @@
 	    </component>
 	    <component name="SolidColor" namespace="pxg" category="pxg" >
 	    </component>
+		<component name="SolidColorStroke" namespace="pxg" category="pxg" >
+	    </component>
 	    <component name="LinearGradientStroke" namespace="pxg" category="pxg" >
 	    </component>
 	    <component name="RadialGradientStroke" namespace="pxg" category="pxg" >
