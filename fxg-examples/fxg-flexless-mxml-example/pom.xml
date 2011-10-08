@@ -13,7 +13,7 @@
   </parent>
   
   <groupId>org.pixelami</groupId>
-  <artifactId>fxg-flexless-mxml</artifactId>
+  <artifactId>fxg-flexless-mxml-example</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>swf</packaging>
 

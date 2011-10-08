@@ -1,0 +1,49 @@
+"Flexless" MXML Example
+
+The following MXML is an example of using fxg-lib in an MXML project that does not include the Flex SDK libs.
+(actually if you start using binding then a few kb of Flex SDK will slip into your build - approx 4kb - 10kb for most cases)
+check the link-report for detials.
+
+<?xml version="1.0" encoding="utf-8"?>
+<Graphic
+	xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns="http://www.pixelami.org/2011/pxg"
+	addedToStage="graphic_addedToStageHandler(event)"
+	>
+	<fx:Metadata>
+		[SWF(widthPercent="100",heightPercent="100",frameRate="61",backgroundColor="#E9E9EB")]
+	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			protected function graphic_addedToStageHandler(event:Event):void
+			{
+				stage.scaleMode = StageScaleMode.NO_SCALE;
+				stage.align = StageAlign.TOP_LEFT;
+			}
+		]]>
+	</fx:Script>
+	
+	
+	<Ellipse width="464.886" height="464.886">
+		<fill>
+			<RadialGradient x="232.443" y="232.443" scaleX="464.886" scaleY="464.886">
+				<GradientEntry ratio="0" color="#FF2E70"/>
+				<GradientEntry ratio="0.290172" color="#FF2F6B"/>
+				<GradientEntry ratio="0.538676" color="#FF3157"/>
+				<GradientEntry ratio="0.774486" color="#FF3434"/>
+				<GradientEntry ratio="1" color="#FF3A00"/>
+			</RadialGradient>
+			
+		</fill>
+	</Ellipse>
+	
+	<Rect x="500" width="400" height="400">
+		<fill>
+			<LinearGradient rotation="90">
+				<GradientEntry ratio="0" color="#000000"/>
+				<GradientEntry ratio="1" color="#FF3A00"/>
+			</LinearGradient>
+		</fill>
+	</Rect>
+</Graphic>

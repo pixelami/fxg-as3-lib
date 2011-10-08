@@ -1,0 +1,39 @@
+Pure Actionscript 3 implementation of FXG.
+
+// Visual elements
+Graphic - implemented
+Group - implemented
+Line - implemented
+Path - implemented
+Ellipse - implemented
+Rect - implemented
+			
+// Fills
+LinearGradient - implemented
+RadialGradient - implemented
+BitmapFill - implemented (untested)
+SolidColor - implemented
+			
+			
+// Strokes
+SolidColorStroke - implemented
+LinearGradientStroke - implemented (untested)
+RadialGradientStroke - implemented (untested)
+			
+// Filters
+DropShadowFilter - implemented
+BlurFilter - implemented
+BevelFilter - implemented (untested)
+ColorMatrixFilter - implemented (untested)
+GradientBevelFilter - implemented (untested)
+GradientGlowFilter - implemented (untested)
+			
+// Text
+TextGraphic - implemented 
+*(paragraph,span,br not implemented)
+			
+//Bitmap
+BitmapGraphic - implemented
+
+
+Note all items marked implemented may not be feature complete. i.e all the properties may not work yet.

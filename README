@@ -2,87 +2,9 @@ Pure Actionscript 3 implementation of FXG.
 
 Contains run-time renderer and can be used in MXML or AS3 Projects without requiring the Flex SDK libraries.
 
-// Visual elements
-Graphic - implemented
-Group - implemented
-Line - implemented
-Path - implemented
-Ellipse - implemented
-Rect - implemented
-			
-// Fills
-LinearGradient - implemented
-RadialGradient - implemented
-BitmapFill - implemented (untested)
-SolidColor - implemented
-			
-			
-// Strokes
-SolidColorStroke - implemented
-LinearGradientStroke - implemented (untested)
-RadialGradientStroke - implemented (untested)
-			
-// Filters
-DropShadowFilter - implemented
-BlurFilter - implemented
-BevelFilter - implemented (untested)
-ColorMatrixFilter - implemented (untested)
-GradientBevelFilter - implemented (untested)
-GradientGlowFilter - implemented (untested)
-			
-// Text
-TextGraphic - implemented 
-*(paragraph,span,br not implemented)
-			
-//Bitmap
-BitmapGraphic - implemented
+Includes
 
+fxg-lib - pure Actionscript 3 implementation FXG.
+fxg-flexless-mxl - An MXML example of fxg-lib usage without any Flex SDK dependecies.
 
-Note all items marked implemented may not be feature complete. i.e all the properties may not work yet.
-
-
-
-MXML Example
-<?xml version="1.0" encoding="utf-8"?>
-<Graphic
-	xmlns:fx="http://ns.adobe.com/mxml/2009" 
-	xmlns="http://www.pixelami.org/2011/pxg"
-	addedToStage="graphic_addedToStageHandler(event)"
-	>
-	<fx:Metadata>
-		[SWF(widthPercent="100",heightPercent="100",frameRate="61",backgroundColor="#E9E9EB")]
-	</fx:Metadata>
-	
-	<fx:Script>
-		<![CDATA[
-			protected function graphic_addedToStageHandler(event:Event):void
-			{
-				stage.scaleMode = StageScaleMode.NO_SCALE;
-				stage.align = StageAlign.TOP_LEFT;
-			}
-		]]>
-	</fx:Script>
-	
-	
-	<Ellipse width="464.886" height="464.886">
-		<fill>
-			<RadialGradient x="232.443" y="232.443" scaleX="464.886" scaleY="464.886">
-				<GradientEntry ratio="0" color="#FF2E70"/>
-				<GradientEntry ratio="0.290172" color="#FF2F6B"/>
-				<GradientEntry ratio="0.538676" color="#FF3157"/>
-				<GradientEntry ratio="0.774486" color="#FF3434"/>
-				<GradientEntry ratio="1" color="#FF3A00"/>
-			</RadialGradient>
-			
-		</fill>
-	</Ellipse>
-	
-	<Rect x="500" width="400" height="400">
-		<fill>
-			<LinearGradient rotation="90">
-				<GradientEntry ratio="0" color="#000000"/>
-				<GradientEntry ratio="1" color="#FF3A00"/>
-			</LinearGradient>
-		</fill>
-	</Rect>
-</Graphic>
+All modules can be build from the top level project directory using "mvn clean install".
