@@ -22,6 +22,10 @@ package org.pixelami.fxg.elements.filters
 		private var _shadowColor:Number = 0;
 		private var _type:String = "inner";
 		
+		public function BevelFilter()
+		{
+			
+		}
 		
 		/**
 		 * The angle of the generated bevel. This angle is expressed in document coordinate space.

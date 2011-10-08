@@ -19,6 +19,7 @@ package org.pixelami.fxg.elements.fills
 	import flash.geom.Rectangle;
 	
 	import org.pixelami.fxg.utils.FXGUtil;
+	import org.pixelami.fxg.utils.GradientDescriptor;
 
 	/**
 	 * RadialGradient
@@ -215,7 +216,7 @@ package org.pixelami.fxg.elements.fills
 		
 		protected function prepare(target:Object):void
 		{
-			var o:Object = FXGUtil.getColorsAlphasRatiosFromGradientEntries(entries);
+			var o:GradientDescriptor = FXGUtil.getColorsAlphasRatiosFromGradientEntries(entries);
 			colors = o.colors;
 			alphas = o.alphas;
 			ratios = o.ratios;

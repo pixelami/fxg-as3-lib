@@ -15,6 +15,7 @@ package org.pixelami.fxg.elements.filters
 	
 	import org.pixelami.fxg.elements.fills.GradientEntry;
 	import org.pixelami.fxg.utils.FXGUtil;
+	import org.pixelami.fxg.utils.GradientDescriptor;
 
 	/**
 	 * <p>Applies a Glow effect to the input element, using a specified gradient to fill the glow rather than a single color.
@@ -39,7 +40,7 @@ package org.pixelami.fxg.elements.filters
 		
 		override public function getFilter():*
 		{
-			var o:Object = FXGUtil.getColorsAlphasRatiosFromGradientEntries(entries);
+			var o:GradientDescriptor = FXGUtil.getColorsAlphasRatiosFromGradientEntries(entries);
 			var f:flash.filters.GradientGlowFilter = new flash.filters.GradientGlowFilter(
 				distance,angle,o.colors,o.alphas,o.ratios,blurX,blurY,strength,quality,type,knockout);
 		}

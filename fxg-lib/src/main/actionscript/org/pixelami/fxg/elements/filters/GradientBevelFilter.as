@@ -23,6 +23,7 @@ package org.pixelami.fxg.elements.filters
 	import org.pixelami.fxg.elements.fills.GradientEntry;
 	import org.pixelami.fxg.elements.fills.IFXGFill;
 	import org.pixelami.fxg.utils.FXGUtil;
+	import org.pixelami.fxg.utils.GradientDescriptor;
 
 	/**
 	 * <p>Applies a Bevel effect to the input element, using a specified gradient to fill the bevel rather than a highlight and shadow color.
@@ -47,7 +48,7 @@ package org.pixelami.fxg.elements.filters
 		
 		override public function getFilter():*
 		{
-			var o:Object = FXGUtil.getColorsAlphasRatiosFromGradientEntries(entries);
+			var o:GradientDescriptor = FXGUtil.getColorsAlphasRatiosFromGradientEntries(entries);
 			
 			var f:flash.filters.GradientBevelFilter = new flash.filters.GradientBevelFilter(
 				distance,angle,o.colors,o.alphas,o.ratios,blurX,blurY,strength,quality,type,knockout);

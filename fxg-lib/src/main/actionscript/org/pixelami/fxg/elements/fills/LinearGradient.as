@@ -19,6 +19,9 @@ package org.pixelami.fxg.elements.fills
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
+	import org.pixelami.fxg.utils.FXGUtil;
+	import org.pixelami.fxg.utils.GradientDescriptor;
+	
 	[DefaultProperty("entries")]
 	public class LinearGradient extends FXGFill implements IFXGGradientFill
 	{
@@ -154,20 +157,10 @@ package org.pixelami.fxg.elements.fills
 		
 		protected function prepare():void
 		{
-			colors = [];
-			alphas = [];
-			ratios = [];
-			
-			var count:uint = 0;
-			for each(var ge:GradientEntry in entries)
-			{
-				colors.push(ge.color);
-				alphas.push(ge.alpha);
-				var rat:Number = isNaN(ge.ratio) ? count * (1/(entries.length - 1)) : ge.ratio;
-				// flash internal ratios are between 0-255
-				var rtio:uint = rat * 255;
-				ratios.push(rtio);
-			}
+			var o:GradientDescriptor = FXGUtil.getColorsAlphasRatiosFromGradientEntries(entries);
+			colors = o.colors;
+			alphas = o.colors;
+			ratios = o.ratios;
 			
 			matrix = new Matrix();
 		}

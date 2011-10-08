@@ -14,7 +14,7 @@
   
   <groupId>org.pixelami</groupId>
   <artifactId>fxg-lib</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <packaging>swc</packaging>
 
   <name>Pure AS3 FXG Rendering Library</name>

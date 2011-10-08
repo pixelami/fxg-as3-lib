@@ -25,6 +25,11 @@ package org.pixelami.fxg.elements.filters
 		
 		private var _matrixArray:Array;
 		
+		public function ColorMatrixFilter()
+		{
+			
+		}
+		
 		/**
 		 * A comma-delimited list of 20 doubles that comprise a 4x5 matrix applied to the rendered element.  The matrix is in row major order---that is, the first five elements are multiplied by the vector [srcR,srcG,srcB,srcA,1] to determine the output red value, the second five determine the output green value, etc.
 		 */

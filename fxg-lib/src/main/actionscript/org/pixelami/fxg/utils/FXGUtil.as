@@ -190,12 +190,9 @@ package org.pixelami.fxg.utils
 			return src;
 		}
 		
-		public static function getColorsAlphasRatiosFromGradientEntries(entries:Vector.<GradientEntry>):Object
+		public static function getColorsAlphasRatiosFromGradientEntries(entries:Vector.<GradientEntry>):GradientDescriptor
 		{
-			var o:Object = {};
-			o.colors = [];
-			o.alphas = [];
-			o.ratios = [];
+			var o:GradientDescriptor = new GradientDescriptor();
 			
 			var count:uint = 0;
 			for each(var ge:GradientEntry in entries)
