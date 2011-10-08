@@ -6,3 +6,4 @@ target
 .actionScriptProperties
 .flexLibProperties
 *.orig
+.DS_Store
