@@ -80,6 +80,7 @@
   <modules>
   	<module>fxg-lib</module>
   	<module>fxg-examples/fxg-flexless-mxml-example</module>
+  	<module>fxg-examples/fxg-actionscript3-example</module>
   </modules>
   
   <distributionManagement>
