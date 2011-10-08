@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project 
+	xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+	>
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+  	<groupId>org.pixelami</groupId>
+  	<artifactId>pixelami-fxg-aggregator</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+  </parent>
+  
+  <groupId>org.pixelami</groupId>
+  <artifactId>fxg-lib</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>swc</packaging>
+
+  <name>Pure AS3 FXG Rendering Library</name>
+  
+  
+  
+  <build>
+  	<sourceDirectory>src/main/actionscript</sourceDirectory>
+    <testSourceDirectory>src/test/actionscript</testSourceDirectory>
+	
+    <plugins>
+  	  <plugin>
+        <groupId>org.sonatype.flexmojos</groupId>
+        <artifactId>flexmojos-maven-plugin</artifactId>
+        <version>${flexmojos.version}</version>
+        <extensions>true</extensions>
+        <dependencies>
+          <!--
+          <dependency>
+            <groupId>org.sonatype.flexmojos</groupId>
+            <artifactId>flexmojos-threadlocaltoolkit-wrapper</artifactId>
+            <version>${flexmojos.version}</version>
+          </dependency>
+		  -->
+          <dependency>
+            <groupId>com.adobe.flex</groupId>
+            <artifactId>compiler</artifactId>
+            <version>${flex.sdk.version}</version>
+            <type>pom</type>
+          </dependency>
+        </dependencies>
+		<configuration>
+	  	  <namespaces>
+		    <namespace>
+			  <uri>http://www.pixelami.org/2011/pxg</uri>
+			  <manifest>${project.build.directory}/px-manifest.xml</manifest>
+			</namespace>
+		  </namespaces>
+		  <includeNamespaces>
+		        <namespace>http://www.pixelami.org/2011/pxg</namespace>
+		    </includeNamespaces>
+	    </configuration>
+		<executions>
+          <execution>
+            <goals>
+              <goal>manifest</goal>
+            </goals>
+            <configuration>
+              <manifestIncludes>
+                <include>org/pixelami/fxg/elements/**/*</include>
+				<include>org/pixelami/fxg/renderers/*</include>
+              </manifestIncludes>
+              <manifestExcludes>
+                <exclude>org/pixelami/fxg/utils/**/*</exclude>
+				<exclude>org/pixelami/fxg/elements/**/I*</exclude>
+				<exclude>org/pixelami/fxg/elements/**/FXG*</exclude>
+				<exclude>org/pixelami/fxg/elements/fxg_internal.as</exclude>
+              </manifestExcludes>
+			  <outputFile>${project.build.directory}/px-manifest.xml</outputFile>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  
+  
+
+</project>

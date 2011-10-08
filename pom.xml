@@ -7,78 +7,25 @@
   <modelVersion>4.0.0</modelVersion>
   
   <groupId>org.pixelami</groupId>
-  <artifactId>fxg-lib</artifactId>
+  <artifactId>pixelami-fxg-aggregator</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>swc</packaging>
+  <packaging>pom</packaging>
 
-  <name>Pure AS3 FXG Rendering Library</name>
+  <name>Pixelami FXG Aggregator</name>
+  
+  <modules>
+  	<module>fxg-lib</module>
+  	<module>fxg-examples/fxg-flexless-mxml</module>
+  </modules>
   
   <properties>
 	<flex.sdk.version>4.1.0.16076</flex.sdk.version>
-	<flexunit.version>4.0-rc-1</flexunit.version>
+	<flexunit.version>4.1.0-beta3</flexunit.version>
 	<flexmojos.version>3.9</flexmojos.version>
 	<flashplayer.version>10.1</flashplayer.version>
   </properties>
   
-  <build>
-  	<sourceDirectory>src/main/actionscript</sourceDirectory>
-    <testSourceDirectory>src/test/actionscript</testSourceDirectory>
-	
-    <plugins>
-  	  <plugin>
-        <groupId>org.sonatype.flexmojos</groupId>
-        <artifactId>flexmojos-maven-plugin</artifactId>
-        <version>${flexmojos.version}</version>
-        <extensions>true</extensions>
-        <dependencies>
-          <!--
-          <dependency>
-            <groupId>org.sonatype.flexmojos</groupId>
-            <artifactId>flexmojos-threadlocaltoolkit-wrapper</artifactId>
-            <version>${flexmojos.version}</version>
-          </dependency>
-		  -->
-          <dependency>
-            <groupId>com.adobe.flex</groupId>
-            <artifactId>compiler</artifactId>
-            <version>${flex.sdk.version}</version>
-            <type>pom</type>
-          </dependency>
-        </dependencies>
-		<configuration>
-	  	  <namespaces>
-		    <namespace>
-			  <uri>http://www.pixelami.org/2011/pxg</uri>
-			  <manifest>${project.build.directory}/px-manifest.xml</manifest>
-			</namespace>
-		  </namespaces>
-		  <includeNamespaces>
-		        <namespace>http://www.pixelami.org/2011/pxg</namespace>
-		    </includeNamespaces>
-	    </configuration>
-		<executions>
-          <execution>
-            <goals>
-              <goal>manifest</goal>
-            </goals>
-            <configuration>
-              <manifestIncludes>
-                <include>org/pixelami/fxg/elements/**/*</include>
-				<include>org/pixelami/fxg/renderers/*</include>
-              </manifestIncludes>
-              <manifestExcludes>
-                <exclude>org/pixelami/fxg/utils/**/*</exclude>
-				<exclude>org/pixelami/fxg/elements/**/I*</exclude>
-				<exclude>org/pixelami/fxg/elements/**/FXG*</exclude>
-				<exclude>org/pixelami/fxg/elements/fxg_internal.as</exclude>
-              </manifestExcludes>
-			  <outputFile>${project.build.directory}/px-manifest.xml</outputFile>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
+  
   
   <dependencies>
   	
@@ -107,6 +54,33 @@
 	
   </dependencies>
   
+  
+  <!-- add a shared test resources folder that all projects can use-->
+  <!--
+  <build>
+  	<plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.5</version>
+        <executions>
+          <execution>
+            <id>add-source</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>${project.baseUri}/src/test/resources</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  -->
   <distributionManagement>
     <repository>
       <id>nexus</id>
@@ -114,5 +88,7 @@
    	  <url>http://localhost:8081/nexus/content/repositories/snapshots/</url>
     </repository>
   </distributionManagement>
+  
+  
 
 </project>

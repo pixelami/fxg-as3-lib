@@ -24,7 +24,7 @@ RadialGradientStroke - implemented (untested)
 			
 // Filters
 DropShadowFilter - implemented
-BlurFilter - implemented (untested)
+BlurFilter - implemented
 BevelFilter - implemented (untested)
 ColorMatrixFilter - implemented (untested)
 GradientBevelFilter - implemented (untested)
