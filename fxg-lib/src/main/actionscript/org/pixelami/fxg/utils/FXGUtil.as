@@ -14,8 +14,6 @@ package org.pixelami.fxg.utils
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
-	import mx.utils.ObjectUtil;
-	
 	import org.pixelami.fxg.elements.fills.GradientEntry;
 	
 	//[ExcludeClass]

@@ -1,5 +1,7 @@
 .settings
 .FlexUnitSettings
+.flexConfig.xml
+.flexProperties
 bin
 .project
 target
@@ -7,3 +9,4 @@ target
 .flexLibProperties
 *.orig
 .DS_Store
+bin-debug
