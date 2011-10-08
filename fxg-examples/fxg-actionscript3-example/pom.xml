@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project 
+	xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+	>
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+  	<groupId>org.pixelami</groupId>
+  	<artifactId>pixelami-fxg-aggregator</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+  </parent>
+  
+  <groupId>org.pixelami</groupId>
+  <artifactId>fxg-actionscript3-example</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>swf</packaging>
+
+  <name>FXG Actionscript 3 Demo</name>
+  
+  <build>
+  	<sourceDirectory>src/main/actionscript</sourceDirectory>
+    <testSourceDirectory>src/test/actionscript</testSourceDirectory>
+  </build>
+  
+  <dependencies>
+  	<dependency>
+		<groupId>org.pixelami</groupId>
+		<artifactId>fxg-lib</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<type>swc</type>
+	</dependency>
+  </dependencies>
+  
+
+</project>

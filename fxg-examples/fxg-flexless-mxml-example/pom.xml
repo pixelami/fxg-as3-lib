@@ -22,7 +22,7 @@
   <build>
   	<sourceDirectory>src/main/mxml</sourceDirectory>
     <testSourceDirectory>src/test/mxml</testSourceDirectory>
-	
+	<!--
     <plugins>
   	  <plugin>
         <groupId>org.sonatype.flexmojos</groupId>
@@ -42,6 +42,7 @@
 		</configuration>
       </plugin>
     </plugins>
+    -->
   </build>
   
   <dependencies>
